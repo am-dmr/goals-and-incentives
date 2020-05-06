@@ -2,7 +2,10 @@ branches:
   only:
   - master
   - staging
+cache: bundler
 language: ruby
+services:
+  - postgresql
 rvm:
 - 2.7.1
 env:

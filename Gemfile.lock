@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/rubysec/bundler-audit.git
+  revision: 31dc79b67e81115b3b9221ec621c30a90fd5c898
+  specs:
+    bundler-audit (0.6.1)
+      bundler (>= 1.2.0, < 3)
+      thor (>= 0.18, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -227,6 +235,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler-audit!
   byebug
   database_cleaner
   devise

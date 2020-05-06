@@ -8,6 +8,7 @@ gem 'pg'
 gem 'puma'
 gem 'sass-rails'
 gem 'webpacker'
+gem 'haml'
 
 gem 'dry-initializer'
 gem 'dotenv-rails'

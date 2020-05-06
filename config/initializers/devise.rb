@@ -8,7 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '9d5d5c3f84464208de82770f557bf370a45a48dbe359248f01bc6efdcc8913d83a9f6bbf403a8662bbc23d90e62ab5db5e18928b7ab0c40083c8434e3fbeb116'
+  # config.secret_key = '9d5d5c3f84464208de82770f557bf370a45a48dbe359248f01bc6efdcc8913d83a9f6bbf403a8662bbc23d90e62ab'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -52,12 +52,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [:email]
+  config.case_insensitive_keys = %i[email]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [:email]
+  config.strip_whitespace_keys = %i[email]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -88,7 +88,7 @@ Devise.setup do |config|
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
-  config.skip_session_storage = [:http_auth]
+  config.skip_session_storage = %i[http_auth]
 
   # By default, Devise cleans up the CSRF token on authentication to
   # avoid CSRF token fixation attacks. This means that, when using AJAX
@@ -114,7 +114,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '66c042cfc053b5aded7b356e76545e2f65e1d17b74039335de44e7a4f3beea3cf5a6d24f9f4acfb6cc5cf604b066b41061be6ba24018bafc4df51eea4a3ca627'
+  # config.pepper = '66c042cfc053b5aded7b356e76545e2f65e1d17b74039335de44e7a4f3beea3cf5a6d24f9f4acfb6cc5cf604b066b4106'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false

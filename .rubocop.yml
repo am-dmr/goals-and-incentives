@@ -5,9 +5,10 @@ require:
 
 AllCops:
   Exclude:
-    - vendor/**/*
-    - node_modules/**/*
     - bin/*
+    - db/schema.rb
+    - node_modules/**/*
+    - vendor/**/*
     - tmp/*
 
 Style/Documentation:

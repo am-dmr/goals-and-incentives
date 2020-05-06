@@ -1,0 +1,7 @@
+%h2 Hi there
+- if web_v1_user_signed_in?
+  %li
+    = link_to 'Logout', destroy_web_v1_user_session_path, method: :delete       
+- else
+  %li
+    = link_to 'Login', new_web_v1_user_session_path 

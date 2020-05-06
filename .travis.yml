@@ -1,0 +1,17 @@
+branches:
+  only:
+  - master
+  - staging
+language: ruby
+rvm:
+- 2.7.1
+env:
+- DATABASE_URL=postgres://postgres@127.0.0.1:5432/goals-test SECRET_TOKEN=abcdefabcdefabcdef
+before_install:
+  - gem install bundler
+script:
+  - bundle exec bundler-audit update && bundle exec bundler-audit check
+  - bundle exec rubocop
+  - RUBYOPT='-W:no-deprecated' RAILS_ENV=test bundle exec rake db:create
+  - RUBYOPT='-W:no-deprecated' RAILS_ENV=test bundle exec rake db:migrate
+  - RUBYOPT='-W:no-deprecated' bundle exec rspec

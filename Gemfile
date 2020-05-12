@@ -34,4 +34,6 @@ group :development do
   gem 'rubocop-performance', '= 1.5.2'
   gem 'rubocop-rails', '= 2.5.2'
   gem 'bundler-audit', github: 'rubysec/bundler-audit'
+
+  gem 'foreman'
 end

@@ -3,3 +3,10 @@ en:
     daily: Daily
     goals: Goals
     incentives: Incentives
+    login: Login
+    logout: Logout
+  incentives:
+    new: New Incentive
+    create: Create
+    edit: edit
+    delete: delete

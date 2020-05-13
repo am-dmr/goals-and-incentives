@@ -10,7 +10,7 @@
 
   %body
     %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.mb-4
-      %a.navbar-brand{ href: '#' } Goals & Incentives
+      %a.navbar-brand{ href: root_path } Goals & Incentives
       %button.navbar-toggler{ 'aria-controls' => 'navbarCollapse',
                               'aria-expanded' => 'false',
                               'aria-label' => 'Toggle navigation',
@@ -18,24 +18,28 @@
                               'data-toggle' => 'collapse',
                               type: 'button' }
         %span.navbar-toggler-icon
+
       #navbarCollapse.collapse.navbar-collapse
-        %ul.navbar-nav.mr-auto
-          %li.nav-item.active
-            %a.nav-link{ href: '#'}
-              = t('menu.daily')
-          %li.nav-item
-            %a.nav-link{ href: '#' }
-              = t('menu.goals')
-          %li.nav-item
-            %a.nav-link{ href: '#' }
-              = t('menu.incentives')
-        %ul.navbar-nav.ml-md-auto
-          %li.nav-item
-            - if web_v1_user_signed_in?
-              %li
-                = link_to 'Logout', destroy_web_v1_user_session_path, method: :delete, class: 'nav-link'
-            - else
-              %li
-                = link_to 'Login', new_web_v1_user_session_path, class: 'nav-link'
+        - if web_v1_user_signed_in?
+          %ul.navbar-nav.mr-auto
+            %li.nav-item{ class: controller.controller_name == 'dashboard' ? 'nav-item active' : 'nav-item' }
+              %a.nav-link{ href: web_v1_dashboard_index_path}
+                = t('menu.daily')
+            %li{ class: controller.controller_name == 'goals' ? 'nav-item active' : 'nav-item' }
+              %a.nav-link{ href: web_v1_goals_path }
+                = t('menu.goals')
+            %li{ class: controller.controller_name == 'incentives' ? 'nav-item active' : 'nav-item' }
+              %a.nav-link{ href: web_v1_incentives_path }
+                = t('menu.incentives')
+          %ul.navbar-nav.ml-md-auto
+            %li.nav-item
+              %a.nav-link{ href: destroy_web_v1_user_session_path, 'data-method' => 'delete' }
+                = t('menu.logout')
+        - else
+          %ul.navbar-nav.mr-auto
+            %li.nav-item
+              %a.nav-link{ href: new_web_v1_user_session_path }
+                = t('menu.login')
+
     %main.container{ role: 'container' }
       = yield

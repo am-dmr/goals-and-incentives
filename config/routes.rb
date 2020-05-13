@@ -6,6 +6,10 @@ Rails.application.routes.draw do
       root to: 'dashboard#index'
 
       devise_for :users
+
+      resources :dashboard, only: %i[index]
+      resources :goals
+      resources :incentives
     end
   end
 end

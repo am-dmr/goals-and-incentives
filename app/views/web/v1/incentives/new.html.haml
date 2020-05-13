@@ -1,0 +1,10 @@
+.form
+  = form_with model: @incentive, url: web_v1_incentives_path, local: true do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: 'form-control'
+    .form-group
+      = f.label :size
+      = f.select :size, Incentive.sizes_for_select, {}, class: 'form-control'
+    .form-group
+      = f.submit t('incentives.create'), class: 'btn btn-primary'

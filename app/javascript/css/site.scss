@@ -1,4 +1,12 @@
 // sass variable overrides
 // $body-bg: aliceblue;
 
-@import "~bootstrap/scss/bootstrap.scss"
+@import "~bootstrap/scss/bootstrap.scss";
+
+@include media-breakpoint-down(lg) {
+  $font-size-base: 2rem;
+
+  body, .navbar-brand {
+    font-size: $font-size-base;
+  }
+}

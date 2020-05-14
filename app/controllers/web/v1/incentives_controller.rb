@@ -19,10 +19,10 @@ module Web
         @incentive = current_web_v1_user.incentives.create(params.require(:incentive).permit(:name, :size))
 
         if @incentive.persisted?
-          # TODO: flash OK
-          redirect_to web_v1_incentives_path
+          flash[:notice] = t('incentives.create_ok')
+          redirect_to web_v1_incentive_path(@incentive)
         else
-          # TODO: flash ERROR
+          flash[:alert] = t('incentives.create_error')
           render :new
         end
       end
@@ -35,10 +35,10 @@ module Web
         @incentive = current_web_v1_user.incentives.find(params[:id])
 
         if @incentive.update(params.require(:incentive).permit(:name, :size))
-          # TODO: flash OK
-          redirect_to web_v1_incentives_path
+          flash[:notice] = t('incentives.update_ok')
+          redirect_to web_v1_incentive_path(@incentive)
         else
-          # TODO: flash ERROR
+          flash[:alert] = t('incentives.update_error')
           render :edit
         end
       end
@@ -47,10 +47,11 @@ module Web
         @incentive = current_web_v1_user.incentives.find(params[:id])
 
         if @incentive.destroy
-          # TODO: flash OK
+          flash[:notice] = t('incentives.delete_ok')
           redirect_to web_v1_incentives_path
         else
-          # TODO: flash ERROR
+          flash[:alert] = t('incentives.delete_error')
+          redirect_to web_v1_incentive_path(@incentive)
         end
       end
     end

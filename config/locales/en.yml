@@ -8,12 +8,18 @@ en:
   incentives:
     new: New Incentive
     create: Create
-    update: Update
+    create_ok: New Incentive successfully created
+    create_error: Unable to create new Incentive
     edit: Edit
+    update: Update
+    update_ok: Incentive successfully updated
+    update_error: Unable to update Incentive
     delete: Delete
     delete_confirm: Are you sure?
+    delete_ok: Incentive successfully deleted
+    delete_error: Unable to delete Incentive
   activerecord:
     attributes:
       incentive:
-        name: Name1111
+        name: Name
         size: Size

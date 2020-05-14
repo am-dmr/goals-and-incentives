@@ -18,3 +18,9 @@ import 'popper.js'
 import 'bootstrap'
 
 import 'css/site'
+
+$(document).ready(function() {
+  setTimeout(
+    function() { $('.alert').hide(500); }, 2000
+  );
+});

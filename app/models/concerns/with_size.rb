@@ -3,7 +3,7 @@ module WithSize
 
   class_methods do
     def sizes_for_select
-      sizes.each_with_object({}) { |(k, v), h| h[k.to_s.upcase] = k }
+      sizes.each_with_object({}) { |(k, _), h| h[k.to_s.upcase] = k }
     end
   end
 

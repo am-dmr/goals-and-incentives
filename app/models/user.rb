@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :rememberable
 
-  has_many :goals
-  has_many :incentives
+  has_many :goals, dependent: :restrict_with_error
+  has_many :incentives, dependent: :restrict_with_error
 
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true

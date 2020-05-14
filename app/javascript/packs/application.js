@@ -12,3 +12,15 @@ require("@rails/ujs").start()
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+import 'jquery'
+import 'popper.js'
+import 'bootstrap'
+
+import 'css/site'
+
+$(document).ready(function() {
+  setTimeout(
+    function() { $('.alert').hide(500); }, 2000
+  );
+});

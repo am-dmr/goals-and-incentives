@@ -1,33 +1,64 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  menu:
+    daily: Daily
+    goals: Goals
+    incentives: Incentives
+    login: Login
+    logout: Logout
+  goals:
+    new: New Goal
+    create: Create
+    create_ok: New Goal successfully created
+    create_error: Unable to create new Goal
+    edit: Edit
+    update: Update
+    update_ok: Goal successfully updated
+    update_error: Unable to update Goal
+    delete: Delete
+    delete_confirm: Are you sure?
+    delete_ok: Goal successfully deleted
+    delete_error: Unable to delete Goal
+  incentives:
+    new: New Incentive
+    create: Create
+    create_ok: New Incentive successfully created
+    create_error: Unable to create new Incentive
+    edit: Edit
+    update: Update
+    update_ok: Incentive successfully updated
+    update_error: Unable to update Incentive
+    delete: Delete
+    delete_confirm: Are you sure?
+    delete_ok: Incentive successfully deleted
+    delete_error: Unable to delete Incentive
+  activerecord:
+    attributes:
+      goal:
+        name: Name
+        limit: Limit
+        aim: Aim
+        aim/less_than: "<"
+        aim/equal: "="
+        aim/greater_than: ">"
+        period: Period
+        period/once: Once
+        period/per_day: Per day
+        period/per_week: Per week
+        size: Size
+        size/xs: XS
+        size/s: S
+        size/m: M
+        size/l: XS
+        size/xl: XL
+        size/xxl: XXL
+        size/xxxl: XXXL
+      incentive:
+        name: Name
+        size: Size
+        size/xs: XS
+        size/s: S
+        size/m: M
+        size/l: XS
+        size/xl: XL
+        size/xxl: XXL
+        size/xxxl: XXXL

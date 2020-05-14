@@ -1,0 +1,32 @@
+.container
+  .row
+    .col
+      = link_to t('incentives.new'),
+                new_web_v1_incentive_path,
+                class: 'btn btn-primary button-above-table',
+                role: 'button'
+  .row
+    .col
+      %table.table.table-striped.table-responsive
+        %thead.thead-dark
+          %tr
+            %th{scope: 'col'}
+              = Incentive.human_attribute_name(:name)
+            %th{scope: 'col'}
+              = Incentive.human_attribute_name(:size)
+            %th{scope: 'col'}
+            %th{scope: 'col'}
+        %tbody
+          - @incentives.each do |incentive|
+            %tr
+              %td
+                = link_to incentive.name, web_v1_incentive_path(incentive)
+              %td
+                = incentive.enum_display(:size)
+              %td
+                = link_to t('incentives.edit'), edit_web_v1_incentive_path(incentive)
+              %td
+                = link_to t('incentives.delete'),
+                          web_v1_incentive_path(incentive),
+                          method: :delete,
+                          data: { confirm: t('incentives.delete_confirm') }

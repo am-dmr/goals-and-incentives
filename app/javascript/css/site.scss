@@ -1,0 +1,41 @@
+// sass variable overrides
+// $body-bg: aliceblue;
+
+@import "~bootstrap/scss/bootstrap.scss";
+
+@include media-breakpoint-down(lg) {
+  $font-size-base: 2rem;
+
+  body, .navbar-brand, .btn, .form-control {
+    font-size: $font-size-base;
+  }
+}
+
+.button-above-table {
+  margin: $font-size-base 0;
+}
+
+.field_with_errors label,
+.field_with_errors .form-control-feedback,
+.field_with_errors .form-control-label,
+.field_with_errors .col-form-label,
+.field_with_errors .form-check-label,
+.field_with_errors .custom-control {
+  color: #d9534f;
+}
+
+.field_with_errors .form-control {
+  border-color: #d9534f;
+}
+
+.field_with_errors .input-group-addon {
+  color: #d9534f;
+  border-color: #d9534f;
+  background-color: #fdf7f7;
+}
+
+.flash-alert {
+  position: fixed;
+  top: 5vh;
+  left: 5vw;
+}

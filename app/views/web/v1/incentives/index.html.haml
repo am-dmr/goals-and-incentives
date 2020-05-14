@@ -10,8 +10,10 @@
       %table.table.table-striped.table-responsive
         %thead.thead-dark
           %tr
-            %th{scope: 'col'} Name
-            %th{scope: 'col'} Size
+            %th{scope: 'col'}
+              = Incentive.human_attribute_name(:name)
+            %th{scope: 'col'}
+              = Incentive.human_attribute_name(:size)
             %th{scope: 'col'}
             %th{scope: 'col'}
         %tbody
@@ -20,7 +22,7 @@
               %td
                 = link_to incentive.name, web_v1_incentive_path(incentive)
               %td
-                = incentive.size_humanize
+                = incentive.enum_display(:size)
               %td
                 = link_to t('incentives.edit'), edit_web_v1_incentive_path(incentive)
               %td

@@ -5,6 +5,19 @@ en:
     incentives: Incentives
     login: Login
     logout: Logout
+  goals:
+    new: New Goal
+    create: Create
+    create_ok: New Goal successfully created
+    create_error: Unable to create new Goal
+    edit: Edit
+    update: Update
+    update_ok: Goal successfully updated
+    update_error: Unable to update Goal
+    delete: Delete
+    delete_confirm: Are you sure?
+    delete_ok: Goal successfully deleted
+    delete_error: Unable to delete Goal
   incentives:
     new: New Incentive
     create: Create
@@ -20,6 +33,32 @@ en:
     delete_error: Unable to delete Incentive
   activerecord:
     attributes:
+      goal:
+        name: Name
+        limit: Limit
+        aim: Aim
+        aim/less_than: "<"
+        aim/equal: "="
+        aim/greater_than: ">"
+        period: Period
+        period/once: Once
+        period/per_day: Per day
+        period/per_week: Per week
+        size: Size
+        size/xs: XS
+        size/s: S
+        size/m: M
+        size/l: XS
+        size/xl: XL
+        size/xxl: XXL
+        size/xxxl: XXXL
       incentive:
         name: Name
         size: Size
+        size/xs: XS
+        size/s: S
+        size/m: M
+        size/l: XS
+        size/xl: XL
+        size/xxl: XXL
+        size/xxxl: XXXL

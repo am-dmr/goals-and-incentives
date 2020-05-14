@@ -14,6 +14,7 @@ class Goal < ApplicationRecord
   belongs_to :user
 
   include WithSize
+  include WithEnum
 
   validates :user, :name, :limit, :aim, :period, presence: true
 end

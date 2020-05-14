@@ -6,7 +6,7 @@
 @include media-breakpoint-down(lg) {
   $font-size-base: 2rem;
 
-  body, .navbar-brand {
+  body, .navbar-brand, .btn {
     font-size: $font-size-base;
   }
 }

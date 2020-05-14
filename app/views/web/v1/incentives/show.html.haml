@@ -1,0 +1,26 @@
+.container
+  .row
+    .col-lg-2.col-4
+      = link_to t('incentives.edit'),
+                edit_web_v1_incentive_path(@incentive),
+                class: 'btn btn-primary button-above-table',
+                role: 'button'
+    .col-lg-2.col-4
+      = link_to t('incentives.delete'),
+                web_v1_incentive_path(@incentive),
+                class: 'btn btn-primary button-above-table',
+                role: 'button',
+                method: :delete,
+                data: { confirm: t('incentives.delete_confirm') }
+  .row
+    .col-lg-2.col-4
+      = Incentive.human_attribute_name(:name)
+    .col-lg-10.col-8
+      %strong
+        = @incentive.name
+  .row
+    .col-lg-2.col-4
+      = Incentive.human_attribute_name(:size)
+    .col-lg-10.col-8
+      %strong
+        = @incentive.size_humanize

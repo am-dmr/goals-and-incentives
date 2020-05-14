@@ -17,11 +17,14 @@
         %tbody
           - @incentives.each do |incentive|
             %tr
-              %th
+              %td
                 = link_to incentive.name, web_v1_incentive_path(incentive)
               %td
                 = incentive.size_humanize
               %td
                 = link_to t('incentives.edit'), edit_web_v1_incentive_path(incentive)
               %td
-                = link_to t('incentives.delete'), web_v1_incentive_path(incentive), method: :delete
+                = link_to t('incentives.delete'),
+                          web_v1_incentive_path(incentive),
+                          method: :delete,
+                          data: { confirm: t('incentives.delete_confirm') }

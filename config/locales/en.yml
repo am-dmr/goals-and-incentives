@@ -8,5 +8,12 @@ en:
   incentives:
     new: New Incentive
     create: Create
-    edit: edit
-    delete: delete
+    update: Update
+    edit: Edit
+    delete: Delete
+    delete_confirm: Are you sure?
+  activerecord:
+    attributes:
+      incentive:
+        name: Name1111
+        size: Size

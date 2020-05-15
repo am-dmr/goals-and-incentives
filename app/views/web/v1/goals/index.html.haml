@@ -36,9 +36,10 @@
               %td
                 = goal.enum_display(:size)
               %td
-                = link_to t('goals.edit'), edit_web_v1_goal_path(goal)
+                = link_to edit_web_v1_goal_path(goal) do
+                  %i.fas.fa-edit
               %td
-                = link_to t('goals.delete'),
-                          web_v1_goal_path(goal),
+                = link_to web_v1_goal_path(goal),
                           method: :delete,
-                          data: { confirm: t('goals.delete_confirm') }
+                          data: { confirm: t('goals.delete_confirm') } do
+                  %i.fas.fa-trash-alt

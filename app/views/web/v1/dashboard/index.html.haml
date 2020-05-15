@@ -26,9 +26,9 @@
               %td
                 = daily.enum_display(:status)
               %td
-                = t('dailies.increase')
+                %i.fas.fa-plus-square
               %td
-                = t('dailies.decrease')
+                %i.fas.fa-minus-square
           - @dailies_per_week.each do |daily|
             %tr
               %td
@@ -40,9 +40,9 @@
               %td
                 = daily.enum_display(:status)
               %td
-                = t('dailies.increase')
+                %i.fas.fa-plus-square
               %td
-                = t('dailies.decrease')
+                %i.fas.fa-minus-square
           - @dailies_once.each do |daily|
             %tr
               %td
@@ -54,9 +54,9 @@
               %td
                 = daily.enum_display(:status)
               %td
-                = t('dailies.increase')
+                %i.fas.fa-plus-square
               %td
-                = t('dailies.decrease')
+                %i.fas.fa-minus-square
   .row
     .col
       %table.table.table-borderless.table-responsive

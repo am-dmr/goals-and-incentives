@@ -1,6 +1,6 @@
 * Add Goal-Incentive link
-* Add Daily repo
 * Add Stats & stats UI
+* Generate dailies
 * Reactivate one-shot
 * Metaprogramming for enums
 * Icons for new/edit/delete

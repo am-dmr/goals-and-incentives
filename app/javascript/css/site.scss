@@ -2,6 +2,7 @@
 // $body-bg: aliceblue;
 
 @import "~bootstrap/scss/bootstrap.scss";
+@import "@fortawesome/fontawesome-free";
 
 @include media-breakpoint-down(lg) {
   $font-size-base: 2rem;

@@ -1,7 +1,7 @@
 - if current_web_v1_user
   .row
     .col
-      %table.table.table-striped.table-responsive
+      %table.table.table-responsive
         %thead.thead-dark
           %tr
             %th{ scope: 'col' }
@@ -15,7 +15,35 @@
             %th{ scope: 'col' }
             %th{ scope: 'col' }
         %tbody
-          - @dailies.each do |daily|
+          - @dailies_per_day.each do |daily|
+            %tr
+              %td
+                = link_to daily.goal.name, web_v1_goal_path(daily.goal)
+              %td
+                = daily.value
+              %td
+                = "#{daily.goal.enum_display(:aim)} #{daily.goal.limit}"
+              %td
+                = daily.enum_display(:status)
+              %td
+                = t('dailies.increase')
+              %td
+                = t('dailies.decrease')
+          - @dailies_per_week.each do |daily|
+            %tr
+              %td
+                = link_to daily.goal.name, web_v1_goal_path(daily.goal)
+              %td
+                = daily.value
+              %td
+                = "#{daily.goal.enum_display(:aim)} #{daily.goal.limit}"
+              %td
+                = daily.enum_display(:status)
+              %td
+                = t('dailies.increase')
+              %td
+                = t('dailies.decrease')
+          - @dailies_once.each do |daily|
             %tr
               %td
                 = link_to daily.goal.name, web_v1_goal_path(daily.goal)

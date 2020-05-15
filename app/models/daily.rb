@@ -1,7 +1,8 @@
 class Daily < ApplicationRecord
   enum status: {
-    failed: 1,
-    success: 2
+    pending: 1,
+    success: 2,
+    failed: 3
   }, _prefix: :status
 
   belongs_to :goal
@@ -10,6 +11,4 @@ class Daily < ApplicationRecord
   include WithEnum
 
   validates :goal, :value, :date, :status, presence: true
-
-  scope :today, -> { where(date: Date.current) }
 end

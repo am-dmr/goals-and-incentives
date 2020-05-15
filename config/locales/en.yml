@@ -31,6 +31,9 @@ en:
     delete_confirm: Are you sure?
     delete_ok: Incentive successfully deleted
     delete_error: Unable to delete Incentive
+  dailies:
+    increase: ➕
+    decrease: ➖
   activerecord:
     attributes:
       goal:
@@ -62,3 +65,11 @@ en:
         size/xl: XL
         size/xxl: XXL
         size/xxxl: XXXL
+      daily:
+        goal: Goal
+        incentive: Incentive
+        value: Value
+        date: Date
+        status: Status
+        status/failed: ❌
+        status/success: ✅

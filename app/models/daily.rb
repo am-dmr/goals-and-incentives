@@ -10,4 +10,6 @@ class Daily < ApplicationRecord
   include WithEnum
 
   validates :goal, :value, :date, :status, presence: true
+
+  scope :today, -> { where(date: Date.current) }
 end

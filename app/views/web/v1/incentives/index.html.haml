@@ -10,12 +10,12 @@
       %table.table.table-striped.table-responsive
         %thead.thead-dark
           %tr
-            %th{scope: 'col'}
+            %th{ scope: 'col' }
               = Incentive.human_attribute_name(:name)
-            %th{scope: 'col'}
+            %th{ scope: 'col' }
               = Incentive.human_attribute_name(:size)
-            %th{scope: 'col'}
-            %th{scope: 'col'}
+            %th{ scope: 'col' }
+            %th{ scope: 'col' }
         %tbody
           - @incentives.each do |incentive|
             %tr

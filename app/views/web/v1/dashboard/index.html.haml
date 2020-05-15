@@ -1,1 +1,40 @@
-%h2 Hi there
+- if current_web_v1_user
+  .row
+    .col
+      %table.table.table-striped.table-responsive
+        %thead.thead-dark
+          %tr
+            %th{ scope: 'col' }
+              = Daily.human_attribute_name(:goal)
+            %th{ scope: 'col' }
+              = Daily.human_attribute_name(:value)
+            %th{ scope: 'col' }
+              = Goal.human_attribute_name(:aim)
+            %th{ scope: 'col' }
+              = Daily.human_attribute_name(:status)
+            %th{ scope: 'col' }
+            %th{ scope: 'col' }
+        %tbody
+          - @dailies.each do |daily|
+            %tr
+              %td
+                = link_to daily.goal.name, web_v1_goal_path(daily.goal)
+              %td
+                = daily.value
+              %td
+                = "#{daily.goal.enum_display(:aim)} #{daily.goal.limit}"
+              %td
+                = daily.enum_display(:status)
+              %td
+                = t('dailies.increase')
+              %td
+                = t('dailies.decrease')
+  .row
+    .col
+      %table.table.table-borderless.table-responsive
+        %tbody
+          %tr
+            %td
+            - (0..9).to_a.reverse.each do |i|
+              %td
+                = i.days.ago.strftime('%d.%m')

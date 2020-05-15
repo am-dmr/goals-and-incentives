@@ -10,18 +10,18 @@
       %table.table.table-striped.table-responsive
         %thead.thead-dark
           %tr
-            %th{scope: 'col'}
+            %th{ scope: 'col' }
               = Goal.human_attribute_name(:name)
-            %th{scope: 'col'}
+            %th{ scope: 'col' }
               = Goal.human_attribute_name(:aim)
-            %th{scope: 'col'}
+            %th{ scope: 'col' }
               = Goal.human_attribute_name(:limit)
-            %th{scope: 'col'}
+            %th{ scope: 'col' }
               = Goal.human_attribute_name(:period)
-            %th{scope: 'col'}
+            %th{ scope: 'col' }
               = Goal.human_attribute_name(:size)
-            %th{scope: 'col'}
-            %th{scope: 'col'}
+            %th{ scope: 'col' }
+            %th{ scope: 'col' }
         %tbody
           - @goals.each do |goal|
             %tr

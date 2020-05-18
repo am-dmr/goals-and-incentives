@@ -3,9 +3,7 @@ module Web
     class DashboardController < ApplicationController
       def index
         repo = DailyRepository.new
-        @dailies_per_day = repo.per_day_dailies(current_web_v1_user)
-        @dailies_per_week = repo.per_week_dailies(current_web_v1_user)
-        @dailies_once = repo.once_dailies(current_web_v1_user)
+        @dailies = repo.current_day(current_web_v1_user)
 
         @stats =
           if current_web_v1_user

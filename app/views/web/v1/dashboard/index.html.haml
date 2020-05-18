@@ -15,35 +15,7 @@
             %th{ scope: 'col' }
             %th{ scope: 'col' }
         %tbody
-          - @dailies_per_day.each do |daily|
-            %tr
-              %td
-                = link_to daily.goal.name, web_v1_goal_path(daily.goal)
-              %td
-                = daily.value
-              %td
-                = "#{daily.goal.enum_display(:aim)} #{daily.goal.limit}"
-              %td
-                = daily.enum_display(:status)
-              %td
-                %i.fas.fa-plus-square
-              %td
-                %i.fas.fa-minus-square
-          - @dailies_per_week.each do |daily|
-            %tr
-              %td
-                = link_to daily.goal.name, web_v1_goal_path(daily.goal)
-              %td
-                = daily.value
-              %td
-                = "#{daily.goal.enum_display(:aim)} #{daily.goal.limit}"
-              %td
-                = daily.enum_display(:status)
-              %td
-                %i.fas.fa-plus-square
-              %td
-                %i.fas.fa-minus-square
-          - @dailies_once.each do |daily|
+          - @dailies.each do |daily|
             %tr
               %td
                 = link_to daily.goal.name, web_v1_goal_path(daily.goal)

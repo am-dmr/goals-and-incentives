@@ -24,7 +24,14 @@ Layout/LineLength:
   Max: 120
 
 Metrics/AbcSize:
-  Max: 20
+  Max: 21
+
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
 
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
@@ -48,4 +55,7 @@ Style/HashTransformValues:
   Enabled: true
 
 Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+RSpec/NamedSubject:
   Enabled: false

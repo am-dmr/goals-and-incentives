@@ -1,1 +1,47 @@
-%h2 Hi there
+- if current_web_v1_user
+  .row
+    .col
+      %table.table.table-responsive
+        %thead.thead-dark
+          %tr
+            %th{ scope: 'col' }
+              = Daily.human_attribute_name(:goal)
+            %th{ scope: 'col' }
+              = Daily.human_attribute_name(:value)
+            %th{ scope: 'col' }
+              = Goal.human_attribute_name(:aim)
+            %th{ scope: 'col' }
+              = Daily.human_attribute_name(:status)
+            %th{ scope: 'col' }
+            %th{ scope: 'col' }
+        %tbody
+          - @dailies.each do |daily|
+            %tr
+              %td
+                = link_to daily.goal.name, web_v1_goal_path(daily.goal)
+              %td
+                = daily.value
+              %td
+                = "#{daily.goal.enum_display(:aim)} #{daily.goal.limit}"
+              %td
+                = daily.enum_display(:status)
+              %td
+                %i.fas.fa-plus-square
+              %td
+                %i.fas.fa-minus-square
+  .row
+    .col
+      %table.table.table-responsive
+        %tbody
+          %tr
+            %td
+            - (0..9).to_a.reverse.each do |i|
+              %td
+                = i.days.ago.strftime('%d.%m')
+          - @stats.each do |goal_id, dailies|
+            %tr
+              %td
+                = link_to dailies[:name], web_v1_goal_path(goal_id)
+              - (0..9).to_a.reverse.each do |i|
+                - daily = dailies[i.days.ago.to_date.strftime('%d%m')]
+                %td{ class: "stats-#{daily.try(:[], :status) || 'pending'}" }

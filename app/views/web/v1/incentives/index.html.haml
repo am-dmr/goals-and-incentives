@@ -10,12 +10,12 @@
       %table.table.table-striped.table-responsive
         %thead.thead-dark
           %tr
-            %th{scope: 'col'}
+            %th{ scope: 'col' }
               = Incentive.human_attribute_name(:name)
-            %th{scope: 'col'}
+            %th{ scope: 'col' }
               = Incentive.human_attribute_name(:size)
-            %th{scope: 'col'}
-            %th{scope: 'col'}
+            %th{ scope: 'col' }
+            %th{ scope: 'col' }
         %tbody
           - @incentives.each do |incentive|
             %tr
@@ -24,9 +24,10 @@
               %td
                 = incentive.enum_display(:size)
               %td
-                = link_to t('incentives.edit'), edit_web_v1_incentive_path(incentive)
+                = link_to edit_web_v1_incentive_path(incentive) do
+                  %i.fas.fa-edit
               %td
-                = link_to t('incentives.delete'),
-                          web_v1_incentive_path(incentive),
+                = link_to web_v1_incentive_path(goal),
                           method: :delete,
-                          data: { confirm: t('incentives.delete_confirm') }
+                          data: { confirm: t('incentives.delete_confirm') } do
+                  %i.fas.fa-trash-alt

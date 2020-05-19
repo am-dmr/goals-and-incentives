@@ -6,6 +6,7 @@ describe User do
   describe 'associations' do
     it { is_expected.to have_many(:goals) }
     it { is_expected.to have_many(:incentives) }
+    it { is_expected.to have_many(:dailies) }
   end
 
   describe 'validations' do

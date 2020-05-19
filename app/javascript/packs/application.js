@@ -16,6 +16,7 @@ require("@rails/ujs").start()
 import 'jquery'
 import 'popper.js'
 import 'bootstrap'
+import '@fortawesome/fontawesome-free/js/all'
 
 import 'css/site'
 

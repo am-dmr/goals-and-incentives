@@ -62,3 +62,9 @@ RSpec/NamedSubject:
 
 RSpec/ExampleLength:
   Enabled: false
+
+RSpec/ExpectChange:
+  EnforcedStyle: block
+
+RSpec/EmptyLineAfterExample:
+  Enabled: false

@@ -17,6 +17,8 @@ gem 'devise'
 
 group :development, :test do
   gem 'byebug'
+  gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'timecop'

@@ -3,14 +3,9 @@ module Web
     class DashboardController < ApplicationController
       def index
         repo = DailyRepository.new
-        @dailies = repo.current_day(current_web_v1_user)
 
-        @stats =
-          if current_web_v1_user
-            current_web_v1_user.dailies.where(date: (9.days.ago..)).includes(:goal, :incentive)
-          else
-            Daily.none
-          end
+        @dailies = repo.current_day(current_web_v1_user)
+        @stats = GenerateStats.call(repo.stats(current_web_v1_user))
       end
     end
   end

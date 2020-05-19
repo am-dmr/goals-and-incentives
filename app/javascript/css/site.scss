@@ -40,3 +40,18 @@
   top: 5vh;
   left: 5vw;
 }
+
+.stats-pending {
+  background-color: #999999;
+  border: 1px solid #333333;
+}
+
+.stats-failed {
+  background-color: #cc0000;
+  border: 1px solid #660000;
+}
+
+.stats-success {
+  background: linear-gradient(to bottom right, #00cc00 50%, #cc0000 50%);
+  border: 1px solid #006600;
+}

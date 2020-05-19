@@ -1,5 +1,4 @@
 * Add Goal-Incentive link
-* Add Stats & stats UI
 * Generate dailies
 * Reactivate one-shot
 * Metaprogramming for enums

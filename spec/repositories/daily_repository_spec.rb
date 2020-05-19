@@ -50,7 +50,7 @@ describe DailyRepository do
       [
         create(:daily, goal: once, date: Date.current),
         create(:daily, goal: per_day_xl, date: Date.yesterday),
-        create(:daily, goal: per_day_xl, date: 22.days.ago.to_date),
+        create(:daily, goal: per_day_xl, date: 19.days.ago.to_date),
         create(:daily, goal: per_day_xs, date: 2.days.ago.to_date),
         create(:daily, goal: per_week, date: 8.days.ago.beginning_of_week),
         create(:daily, goal: create(:goal), date: Date.current)

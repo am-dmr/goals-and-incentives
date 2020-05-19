@@ -29,7 +29,7 @@ class DailyRepository < BaseRepository
 
     user
       .dailies
-      .where(date: (21.days.ago..))
+      .where(date: (18.days.ago..))
       .includes(:goal)
       .order(
         Arel.sql(<<~SQL)

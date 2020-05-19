@@ -1,4 +1,4 @@
-class GenerateStats < BaseService
+class CollectStats < BaseService
   param :relation
 
   def call

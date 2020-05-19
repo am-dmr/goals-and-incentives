@@ -1,9 +1,10 @@
 * Add Goal-Incentive link
-* Generate dailies
-* Reactivate one-shot
+* Move once dailies
+* Inc/Dec daily values (AJAX)
+* Reactivate one-shot (AJAX)
 * Metaprogramming for enums
-* Sign in + bootstrap
 * Optimize UI
 * Optimize mobile UI
 * Deploy to Heroku + CD
+* More RSpecs
 * README

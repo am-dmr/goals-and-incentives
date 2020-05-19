@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe GenerateStats do
+describe CollectStats do
   subject { described_class.call(relation) }
 
   let(:user) { create(:user) }

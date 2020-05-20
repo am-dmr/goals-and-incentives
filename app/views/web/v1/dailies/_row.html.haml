@@ -1,0 +1,15 @@
+%tr{ 'data-daily-id' => daily.id }
+  %td
+    = link_to daily.goal.name, web_v1_goal_path(daily.goal)
+  %td
+    = daily.value
+  %td
+    = "#{daily.goal.enum_display(:aim)} #{daily.goal.limit}"
+  %td
+    = daily.enum_display(:status)
+  %td
+    = link_to increment_web_v1_daily_path(daily), method: :patch, remote: true do
+      %i.fas.fa-plus-square
+  %td
+    = link_to decrement_web_v1_daily_path(daily), method: :patch, remote: true do
+      %i.fas.fa-minus-square

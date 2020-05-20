@@ -1,6 +1,6 @@
 module Web
   module V1
-    class IncentivesController < ApplicationController
+    class IncentivesController < BaseController
       before_action :authenticate_web_v1_user!
 
       def index

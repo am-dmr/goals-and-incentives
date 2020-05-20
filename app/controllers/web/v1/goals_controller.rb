@@ -1,6 +1,6 @@
 module Web
   module V1
-    class GoalsController < ApplicationController
+    class GoalsController < BaseController
       before_action :authenticate_web_v1_user!
 
       def index

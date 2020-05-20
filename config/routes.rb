@@ -10,6 +10,12 @@ Rails.application.routes.draw do
       resources :dashboard, only: %i[index]
       resources :goals
       resources :incentives
+      resources :dailies, only: [] do
+        member do
+          patch :increment
+          patch :decrement
+        end
+      end
     end
   end
 end

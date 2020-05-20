@@ -26,6 +26,9 @@ Layout/LineLength:
 Metrics/AbcSize:
   Max: 21
 
+Metrics/CyclomaticComplexity:
+  Max: 10
+
 Metrics/MethodLength:
   Max: 25
 
@@ -68,3 +71,9 @@ RSpec/ExpectChange:
 
 RSpec/EmptyLineAfterExample:
   Enabled: false
+
+RSpec/NestedGroups:
+  Max: 6
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive

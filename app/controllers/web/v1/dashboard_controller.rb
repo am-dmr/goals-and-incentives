@@ -1,6 +1,6 @@
 module Web
   module V1
-    class DashboardController < ApplicationController
+    class DashboardController < BaseController
       def index
         GenerateDailies.call(current_web_v1_user)
 

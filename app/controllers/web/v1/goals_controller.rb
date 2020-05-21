@@ -43,6 +43,18 @@ module Web
         end
       end
 
+      def reactualize
+        @goal = current_web_v1_user.goals.period_once.find(params[:id])
+
+        if @goal.update(is_completed: false)
+          flash[:notice] = t('goals.update_ok')
+          redirect_to web_v1_goal_path(@goal)
+        else
+          flash[:alert] = t('goals.update_error')
+          render :edit
+        end
+      end
+
       def destroy
         @goal = current_web_v1_user.goals.find(params[:id])
 

@@ -19,4 +19,13 @@ class Goal < ApplicationRecord
   include WithEnum
 
   validates :user, :name, :limit, :aim, :period, presence: true
+
+  validate :once_aim_and_limit, if: :period_once?
+
+  private
+
+  def once_aim_and_limit
+    errors.add(:limit, :for_once_only_one) unless limit == 1
+    errors.add(:aim, :for_once_only_equal) unless aim_equal?
+  end
 end

@@ -22,6 +22,7 @@
               = Goal.human_attribute_name(:size)
             %th{ scope: 'col' }
             %th{ scope: 'col' }
+            %th{ scope: 'col' }
         %tbody
           - @goals.each do |goal|
             %tr
@@ -43,3 +44,7 @@
                           method: :delete,
                           data: { confirm: t('goals.delete_confirm') } do
                   %i.fas.fa-trash-alt
+              %td
+                - if goal.period_once? && goal.is_completed
+                  = link_to reactualize_web_v1_goal_path(goal), method: :patch do
+                    %i.fas.fa-sync

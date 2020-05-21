@@ -64,4 +64,49 @@ describe GenerateDailies do
       it_behaves_like('do nothing')
     end
   end
+
+  context 'with once goal' do
+    context 'with incompleted goal' do
+      let!(:goal) { create(:goal, user: user, period: :once, is_completed: false) }
+
+      context 'with success daily' do
+        before { create(:daily, goal: goal, status: :success, date: Date.yesterday) }
+
+        it_behaves_like('create new daily')
+      end
+
+      context 'with pending daily' do
+        let!(:daily) { create(:daily, goal: goal, status: :pending, date: Date.yesterday) }
+
+        it_behaves_like('do nothing')
+
+        it 'moves old daily to today' do
+          expect { subject }.to change { daily.reload.date }.to(Date.current)
+        end
+        it 'does not update old daily status' do
+          expect { subject }.not_to(change { daily.reload.status })
+        end
+      end
+    end
+
+    context 'with completed goal' do
+      let!(:goal) { create(:goal, user: user, period: :once, is_completed: true) }
+
+      context 'with success daily' do
+        before { create(:daily, goal: goal, status: :success, date: Date.yesterday) }
+
+        it_behaves_like('do nothing')
+      end
+
+      context 'with pending daily' do
+        let!(:daily) { create(:daily, goal: goal, status: :pending, date: Date.yesterday) }
+
+        it_behaves_like('do nothing')
+
+        it 'does not change old daily' do
+          expect { subject }.not_to(change { daily.reload })
+        end
+      end
+    end
+  end
 end

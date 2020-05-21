@@ -121,8 +121,8 @@ describe RecalcDailyStatus do
   end
 
   context 'with once goal' do
-    let(:goal) { create(:goal, period: :once, limit: 2) }
-    let(:daily) { create(:daily, goal: goal, value: 2, status: :pending) }
+    let(:goal) { create(:goal, period: :once, limit: 1) }
+    let(:daily) { create(:daily, goal: goal, value: 1, status: :pending) }
 
     shared_examples 'success case' do
       it 'sets status to success' do
@@ -157,69 +157,25 @@ describe RecalcDailyStatus do
       end
     end
 
-    context 'with less than aim' do
-      before { goal.update(aim: :less_than) }
-
-      context 'with less than' do
-        before { daily.update(value: 1) }
-
-        it_behaves_like('success case')
-      end
-
-      context 'with equal' do
-        before { daily.update(value: 2) }
-
-        it_behaves_like('failed case')
-      end
-
-      context 'with greater than' do
-        before { daily.update(value: 3) }
-
-        it_behaves_like('failed case')
-      end
-    end
-
     context 'with equal aim' do
       before { goal.update(aim: :equal) }
 
       context 'with less than' do
-        before { daily.update(value: 1) }
+        before { daily.update(value: 0) }
 
         it_behaves_like('failed case')
       end
 
       context 'with equal' do
-        before { daily.update(value: 2) }
-
-        it_behaves_like('success case')
-      end
-
-      context 'with greater than' do
-        before { daily.update(value: 3) }
-
-        it_behaves_like('failed case')
-      end
-    end
-
-    context 'with greater than aim' do
-      before { goal.update(aim: :greater_than) }
-
-      context 'with less than' do
         before { daily.update(value: 1) }
 
-        it_behaves_like('failed case')
-      end
-
-      context 'with equal' do
-        before { daily.update(value: 2) }
-
-        it_behaves_like('failed case')
+        it_behaves_like('success case')
       end
 
       context 'with greater than' do
-        before { daily.update(value: 3) }
+        before { daily.update(value: 2) }
 
-        it_behaves_like('success case')
+        it_behaves_like('failed case')
       end
     end
   end

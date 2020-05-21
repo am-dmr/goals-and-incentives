@@ -8,7 +8,11 @@ Rails.application.routes.draw do
       devise_for :users
 
       resources :dashboard, only: %i[index]
-      resources :goals
+      resources :goals do
+        member do
+          patch :reactualize
+        end
+      end
       resources :incentives
       resources :dailies, only: [] do
         member do

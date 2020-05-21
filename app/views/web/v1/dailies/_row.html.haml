@@ -5,8 +5,14 @@
     = daily.value
   %td
     = "#{daily.goal.enum_display(:aim)} #{daily.goal.limit}"
-  %td
-    = daily.enum_display(:status)
+  %td{ class: "daily-row-#{daily.status}" }
+    - case daily.status
+    - when 'pending'
+      %i.fas.fa-spinner
+    - when 'failed'
+      %i.fas.fa-times-circle
+    - when 'success'
+      %i.fas.fa-check-circle
   %td
     = link_to increment_web_v1_daily_path(daily), method: :patch, remote: true do
       %i.fas.fa-plus-square

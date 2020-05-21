@@ -3,6 +3,5 @@
 * Optimize UI
 * Optimize mobile UI
 * Deploy to Heroku + CD
-* More RSpecs (especially controllers)
 * README
 * API v2 + Vue.js

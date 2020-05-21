@@ -41,19 +41,31 @@
   left: 5vw;
 }
 
+.daily-row-pending {
+  color: #383d41;
+}
+
+.daily-row-failed {
+  color: #721c24;
+}
+
+.daily-row-success {
+  color: #155724;
+}
+
 .stats-pending {
-  background-color: #999999;
+  background-color: #e2e3e5;
   border: 1px solid #333333;
 }
 
 .stats-failed {
-  background-color: #cc0000;
-  border: 1px solid #660000;
+  background-color: #f5c6cb;
+  border: 1px solid #333333;
 }
 
 .stats-success {
-  background: linear-gradient(to bottom right, #00cc00 50%, #cc0000 50%);
-  border: 1px solid #006600;
+  background: linear-gradient(to bottom right, #c3e6cb 50%, #f5c6cb 50%);
+  border: 1px solid #333333;
 }
 
 .form-signin {

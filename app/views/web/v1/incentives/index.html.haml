@@ -27,7 +27,7 @@
                 = link_to edit_web_v1_incentive_path(incentive) do
                   %i.fas.fa-edit
               %td
-                = link_to web_v1_incentive_path(goal),
+                = link_to web_v1_incentive_path(incentive),
                           method: :delete,
                           data: { confirm: t('incentives.delete_confirm') } do
                   %i.fas.fa-trash-alt

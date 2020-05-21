@@ -6,7 +6,7 @@ class GenerateDailies < BaseService
 
     generate_per_day_dailies
     generate_per_week_dailies
-    move_once_dailies
+    generate_or_move_once_dailies
   end
 
   private
@@ -37,7 +37,7 @@ class GenerateDailies < BaseService
     end
   end
 
-  def move_once_dailies
+  def generate_or_move_once_dailies
     user
       .goals
       .period_once

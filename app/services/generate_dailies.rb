@@ -37,5 +37,22 @@ class GenerateDailies < BaseService
     end
   end
 
-  def move_once_dailies; end
+  def move_once_dailies
+    user
+      .goals
+      .period_once
+      .where(is_completed: false)
+      .joins(<<~SQL)
+        LEFT JOIN dailies ON dailies.goal_id = goals.id AND dailies.date = '#{Date.current}'
+      SQL
+      .where(dailies: { id: nil })
+      .find_each do |goal|
+      last_daily = goal.dailies.last
+      if last_daily.status_success?
+        goal.dailies.create(date: Date.current, status: :pending, value: 0)
+      else
+        last_daily.update(date: Date.current)
+      end
+    end
+  end
 end

@@ -22,6 +22,6 @@ import 'css/site'
 
 $(document).ready(function() {
   setTimeout(
-    function() { $('.alert').hide(500); }, 2000
+    function() { $('.alert.should-be-hidden').hide(500); }, 2000
   );
 });

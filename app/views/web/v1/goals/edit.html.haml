@@ -1,5 +1,6 @@
 .form
   = form_with model: @goal, url: web_v1_goal_path(@goal), local: true do |f|
+    = render partial: 'web/v1/shared/form_errors', object: @goal, as: 'object'
     .form-group
       = f.label :name
       = f.text_field :name, class: 'form-control'

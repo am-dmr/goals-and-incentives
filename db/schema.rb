@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_071231) do
+ActiveRecord::Schema.define(version: 2020_05_22_081615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 2020_05_20_071231) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_completed", default: false, null: false
+    t.bigint "incentive_id"
+    t.index ["incentive_id"], name: "index_goals_on_incentive_id"
     t.index ["user_id"], name: "index_goals_on_user_id"
   end
 
@@ -62,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_05_20_071231) do
 
   add_foreign_key "dailies", "goals"
   add_foreign_key "dailies", "incentives"
+  add_foreign_key "goals", "incentives"
   add_foreign_key "goals", "users"
   add_foreign_key "incentives", "users"
 end

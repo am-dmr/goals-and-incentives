@@ -21,6 +21,8 @@
             %th{ scope: 'col' }
               = Goal.human_attribute_name(:size)
             %th{ scope: 'col' }
+              = Goal.human_attribute_name(:incentive)
+            %th{ scope: 'col' }
             %th{ scope: 'col' }
             %th{ scope: 'col' }
         %tbody
@@ -36,6 +38,9 @@
                 = goal.enum_display(:period)
               %td
                 = goal.enum_display(:size)
+              %td
+                - if goal.incentive.present?
+                  = link_to goal.incentive.name, web_v1_incentive_path(goal.incentive)
               %td
                 = link_to edit_web_v1_goal_path(goal) do
                   %i.fas.fa-edit

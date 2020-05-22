@@ -12,6 +12,7 @@ class Goal < ApplicationRecord
   }, _prefix: :period
 
   belongs_to :user
+  belongs_to :incentive, optional: true
 
   has_many :dailies, dependent: :restrict_with_error
 

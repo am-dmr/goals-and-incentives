@@ -2,12 +2,13 @@ require 'rails_helper'
 
 describe Web::V1::GoalsController do
   let(:user) { create(:user) }
+  let(:incentive) { create(:incentive, user: user) }
 
   describe '#create' do
     subject { post '/web/1.0/goals', params: params }
 
     let(:params) do
-      { goal: { name: 'Name', aim: 'equal', limit: 3, period: :per_day, size: 'm' } }
+      { goal: { name: 'Name', aim: 'equal', limit: 3, period: :per_day, size: 'm', incentive: incentive.id } }
     end
 
     shared_examples 'do nothing' do |code|
@@ -56,6 +57,7 @@ describe Web::V1::GoalsController do
             aim: 'equal',
             period: 'per_day',
             size: 'm',
+            incentive_id: incentive.id,
             is_completed: false
           )
         end
@@ -69,7 +71,7 @@ describe Web::V1::GoalsController do
     let(:goal) { create(:goal, user: user, name: 'ameN', aim: 'less_than', limit: 2, period: :per_week, size: 'l') }
 
     let(:params) do
-      { goal: { name: 'Name', aim: 'equal', limit: 3, period: :per_day, size: 'm' } }
+      { goal: { name: 'Name', aim: 'equal', limit: 3, period: :per_day, size: 'm', incentive: incentive.id } }
     end
 
     shared_examples 'do nothing' do |code|
@@ -121,6 +123,7 @@ describe Web::V1::GoalsController do
             aim: 'equal',
             period: 'per_day',
             size: 'm',
+            incentive_id: incentive.id,
             is_completed: false
           )
         end

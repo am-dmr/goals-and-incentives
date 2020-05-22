@@ -16,4 +16,10 @@
       = f.label :size
       = f.select :size, Goal.enum_options_for_select(:size), {}, class: 'form-control'
     .form-group
+      = f.label :incentive
+      = f.select :incentive,
+                 @goal.user.incentives.order(name: :asc).pluck(:name, :id),
+                 { include_blank: true },
+                 class: 'form-control'
+    .form-group
       = f.submit t('goals.create'), class: 'btn btn-primary'

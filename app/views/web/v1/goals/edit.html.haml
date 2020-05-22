@@ -17,4 +17,17 @@
       = f.label :size
       = f.select :size, Goal.enum_options_for_select(:size), {}, class: 'form-control'
     .form-group
+      = f.label :incentive
+      = f.select :incentive,                                                 |
+                 options_for_select(                                         |
+                   @goal                                                     |
+                     .user                                                   |
+                     .incentives                                             |
+                     .order(Arel.sql("ABS(incentives.size - #{Goal.sizes[@goal.size]}) ASC, name ASC"))  |
+                     .pluck(:name, :id),                                     |
+                   selected:  @goal.incentive&.id                            |
+                 ),                                                          |
+                 { include_blank: true },                                    |
+                 class: 'form-control'                                       |
+    .form-group
       = f.submit t('goals.update'), class: 'btn btn-primary'

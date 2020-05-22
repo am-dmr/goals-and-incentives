@@ -16,7 +16,7 @@ module Web
       end
 
       def create
-        @goal = current_web_v1_user.goals.create(params.require(:goal).permit(:name, :aim, :limit, :period, :size))
+        @goal = current_web_v1_user.goals.create(goal_params)
 
         if @goal.persisted?
           flash[:notice] = t('goals.create_ok')
@@ -34,7 +34,7 @@ module Web
       def update
         @goal = current_web_v1_user.goals.find(params[:id])
 
-        if @goal.update(params.require(:goal).permit(:name, :aim, :limit, :period, :size))
+        if @goal.update(goal_params)
           flash[:notice] = t('goals.update_ok')
           redirect_to web_v1_goal_path(@goal)
         else
@@ -65,6 +65,15 @@ module Web
           flash[:alert] = t('goals.delete_error')
           redirect_to web_v1_goal_path(@goal)
         end
+      end
+
+      private
+
+      def goal_params
+        pp = params.require(:goal).permit(:name, :aim, :limit, :period, :size, :incentive)
+        pp[:incentive_id] = pp[:incentive]
+        pp.delete(:incentive)
+        pp
       end
     end
   end

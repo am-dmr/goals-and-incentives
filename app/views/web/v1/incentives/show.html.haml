@@ -24,3 +24,11 @@
     .col-lg-10.col-8
       %strong
         = @incentive.enum_display(:size)
+  .row
+    .col-lg-2.col-4
+      = Incentive.human_attribute_name(:goals)
+    .col-lg-10.col-8
+      %strong
+        - @incentive.goals.each do |goal|
+          %p
+            = link_to goal.name, web_v1_goal_path(goal)

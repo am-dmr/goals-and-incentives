@@ -21,31 +21,38 @@
                 data: { confirm: t('goals.delete_confirm') }
   .row
     .col-lg-2.col-4
-      = Incentive.human_attribute_name(:name)
+      = Goal.human_attribute_name(:name)
     .col-lg-10.col-8
       %strong
         = @goal.name
   .row
     .col-lg-2.col-4
-      = Incentive.human_attribute_name(:aim)
+      = Goal.human_attribute_name(:aim)
     .col-lg-10.col-8
       %strong
         = @goal.enum_display(:aim)
   .row
     .col-lg-2.col-4
-      = Incentive.human_attribute_name(:limit)
+      = Goal.human_attribute_name(:limit)
     .col-lg-10.col-8
       %strong
         = @goal.limit
   .row
     .col-lg-2.col-4
-      = Incentive.human_attribute_name(:period)
+      = Goal.human_attribute_name(:period)
     .col-lg-10.col-8
       %strong
         = @goal.enum_display(:period)
   .row
     .col-lg-2.col-4
-      = Incentive.human_attribute_name(:size)
+      = Goal.human_attribute_name(:size)
     .col-lg-10.col-8
       %strong
         = @goal.enum_display(:size)
+  .row
+    .col-lg-2.col-4
+      = Goal.human_attribute_name(:incentive)
+    .col-lg-10.col-8
+      %strong
+        - if @goal.incentive.present?
+          = link_to @goal.incentive.name, web_v1_incentive_path(@goal.incentive)

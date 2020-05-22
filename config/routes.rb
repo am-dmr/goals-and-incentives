@@ -18,6 +18,9 @@ Rails.application.routes.draw do
         member do
           patch :increment
           patch :decrement
+          get :edit_incentive
+          patch :update_incentive
+          patch :toggle_incentive_status
         end
       end
     end

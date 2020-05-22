@@ -85,4 +85,177 @@ describe Web::V1::DailiesController do
       end
     end
   end
+
+  describe '#edit_incentive' do
+    subject { get "/web/1.0/dailies/#{daily.id}/edit_incentive", xhr: true }
+
+    shared_examples 'do nothing' do |code|
+      it "returns #{code}" do
+        subject
+        expect(response).to have_http_status(code)
+      end
+    end
+
+    context 'without current user' do
+      it_behaves_like('do nothing', 401)
+    end
+
+    context 'with current user' do
+      before { sign_in(user) }
+
+      context "with another's goal" do
+        before { goal.update(user: create(:user)) }
+
+        it_behaves_like('do nothing', 404)
+      end
+
+      context 'with incorrect ID' do
+        subject { get "/web/1.0/dailies/#{daily.id + 1}/edit_incentive", xhr: true }
+
+        it_behaves_like('do nothing', 404)
+      end
+
+      context 'with correct params' do
+        it 'returns 200' do
+          subject
+          expect(response).to have_http_status(200)
+        end
+      end
+    end
+  end
+
+  describe '#update_incentive' do
+    subject { patch "/web/1.0/dailies/#{daily.id}/update_incentive", params: params, xhr: true }
+
+    let(:incentive) { create(:incentive, user: user) }
+    let(:params) { { daily: { incentive: incentive.id } } }
+
+    shared_examples 'do nothing' do |code|
+      it "returns #{code}" do
+        subject
+        expect(response).to have_http_status(code)
+      end
+      it 'does not update daily.incentive' do
+        expect { subject }.not_to(change { daily.reload.incentive })
+      end
+    end
+
+    context 'without current user' do
+      it_behaves_like('do nothing', 401)
+    end
+
+    context 'with current user' do
+      before { sign_in(user) }
+
+      context "with another's goal" do
+        before { goal.update(user: create(:user)) }
+
+        it_behaves_like('do nothing', 404)
+      end
+
+      context "with another's incentive" do
+        before { incentive.update(user: create(:user)) }
+
+        it_behaves_like('do nothing', 200)
+      end
+
+      context 'with empty params' do
+        let(:params) {}
+
+        it_behaves_like('do nothing', 400)
+      end
+
+      context 'with incorrect ID' do
+        subject { patch "/web/1.0/dailies/#{daily.id + 1}/update_incentive", params: params, xhr: true }
+
+        it_behaves_like('do nothing', 404)
+      end
+
+      context 'with correct params & incentive' do
+        it 'returns 200' do
+          subject
+          expect(response).to have_http_status(200)
+        end
+        it 'updates daily.incentive' do
+          expect { subject }.to change { daily.reload.incentive }.to(incentive)
+        end
+      end
+
+      context 'with correct params & nil' do
+        let(:params) { { daily: { incentive: nil } } }
+
+        it_behaves_like('do nothing', 200)
+      end
+    end
+  end
+
+  describe '#toggle_incentive_status' do
+    subject { patch "/web/1.0/dailies/#{daily.id}/toggle_incentive_status", xhr: true }
+
+    shared_examples 'do nothing' do |code|
+      it "returns #{code}" do
+        subject
+        expect(response).to have_http_status(code)
+      end
+      it 'does not update daily.incentive_status' do
+        expect { subject }.not_to(change { daily.reload.incentive_status })
+      end
+    end
+
+    context 'without current user' do
+      it_behaves_like('do nothing', 401)
+    end
+
+    context 'with current user' do
+      before { sign_in(user) }
+
+      context "with another's goal" do
+        before { goal.update(user: create(:user)) }
+
+        it_behaves_like('do nothing', 404)
+      end
+
+      context 'with incorrect ID' do
+        subject { patch "/web/1.0/dailies/#{daily.id + 1}/toggle_incentive_status", xhr: true }
+
+        it_behaves_like('do nothing', 404)
+      end
+
+      context 'with incentive_status == none' do
+        before { daily.incentive_status_none! }
+
+        it 'returns 200' do
+          subject
+          expect(response).to have_http_status(200)
+        end
+        it 'updates daily.incentive_status to success' do
+          expect { subject }.to change { daily.reload.incentive_status }.to('success')
+        end
+      end
+
+      context 'with incentive_status == success' do
+        before { daily.incentive_status_success! }
+
+        it 'returns 200' do
+          subject
+          expect(response).to have_http_status(200)
+        end
+        it 'updates daily.incentive_status to failed' do
+          expect { subject }.to change { daily.reload.incentive_status }.to('failed')
+        end
+      end
+
+      context 'with incentive_status == failed' do
+        before { daily.incentive_status_failed! }
+
+        it 'returns 200' do
+          subject
+          expect(response).to have_http_status(200)
+        end
+        it 'updates daily.incentive_status to success' do
+          expect { subject }.to change { daily.reload.incentive_status }.to('success')
+        end
+      end
+    end
+  end
 end

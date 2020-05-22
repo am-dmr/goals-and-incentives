@@ -34,6 +34,8 @@ en:
   dailies:
     increase: ➕
     decrease: ➖
+    edit_incentive: Edit incentive
+    update_incentive: Update incentive
   activerecord:
     errors:
       models:

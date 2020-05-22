@@ -12,6 +12,7 @@ class Goal < ApplicationRecord
   }, _prefix: :period
 
   belongs_to :user
+  belongs_to :incentive, optional: true
 
   has_many :dailies, dependent: :restrict_with_error
 
@@ -21,6 +22,11 @@ class Goal < ApplicationRecord
   validates :user, :name, :limit, :aim, :period, presence: true
 
   validate :once_aim_and_limit, if: :period_once?
+
+  before_validation(on: :create) do
+    self.limit ||= 1
+    self.is_completed ||= false
+  end
 
   private
 

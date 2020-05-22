@@ -20,6 +20,7 @@ Rails.application.routes.draw do
           patch :decrement
           get :edit_incentive
           patch :update_incentive
+          patch :toggle_incentive_status
         end
       end
     end

@@ -12,15 +12,14 @@ env:
 - DATABASE_URL=postgres://postgres@127.0.0.1:5432/goals-test SECRET_TOKEN=abcdefabcdefabcdef
 before_install:
   - gem install bundler
-install:
-  - bundle install
   - nvm install node
   - npm i -g yarn
+before_script:
   - yarn
-script:
-  - bundle exec bundler-audit update && bundle exec bundler-audit check
-  - bundle exec rubocop
   - RAILS_ENV=test bundle exec rake db:create
   - RAILS_ENV=test bundle exec rake db:migrate
   - RAILS_ENV=test bundle exec rails webpacker:compile
+script:
+  - bundle exec bundler-audit update && bundle exec bundler-audit check
+  - bundle exec rubocop
   - bundle exec rspec

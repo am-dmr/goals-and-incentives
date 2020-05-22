@@ -23,6 +23,11 @@ class Goal < ApplicationRecord
 
   validate :once_aim_and_limit, if: :period_once?
 
+  before_validation(on: :create) do
+    self.limit ||= 1
+    self.is_completed ||= false
+  end
+
   private
 
   def once_aim_and_limit

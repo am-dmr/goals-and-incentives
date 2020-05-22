@@ -26,6 +26,11 @@ module Web
 
         @daily.update(incentive: incentive)
       end
+
+      def toggle_incentive_status
+        @daily = current_web_v1_user.dailies.find(params[:id])
+        @daily.update(incentive_status: @daily.incentive_status_success? ? :failed : :success)
+      end
     end
   end
 end

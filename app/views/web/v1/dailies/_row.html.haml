@@ -22,3 +22,9 @@
       = link_to daily.incentive.name, web_v1_incentive_path(daily.incentive)
     = link_to edit_incentive_web_v1_daily_path(daily), remote: true do
       %i.fas.fa-edit
+    - if daily.incentive.present?
+      = link_to toggle_incentive_status_web_v1_daily_path(daily), method: :patch, remote: true do
+        - if daily.incentive_status_success?
+          %i.far.fa-check-square
+        - else
+          %i.far.fa-square

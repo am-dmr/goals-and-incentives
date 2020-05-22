@@ -13,7 +13,7 @@
             %th{ scope: 'col' }
               = Daily.human_attribute_name(:status)
             %th{ scope: 'col' }
-            %th{ scope: 'col' }
+              = Goal.human_attribute_name(:incentive)
             %th{ scope: 'col' }
         %tbody
           - @dailies.each do |daily|

@@ -20,7 +20,7 @@ class GenerateDailies < BaseService
       SQL
       .where(dailies: { id: nil })
       .find_each do |goal|
-      goal.dailies.create(date: Date.current, status: :pending, value: 0)
+      goal.dailies.create(date: Date.current, status: :pending, value: 0, incentive: goal.incentive)
     end
   end
 
@@ -33,7 +33,7 @@ class GenerateDailies < BaseService
       SQL
       .where(dailies: { id: nil })
       .find_each do |goal|
-      goal.dailies.create(date: Date.current.beginning_of_week, status: :pending, value: 0)
+      goal.dailies.create(date: Date.current.beginning_of_week, status: :pending, value: 0, incentive: goal.incentive)
     end
   end
 
@@ -49,7 +49,7 @@ class GenerateDailies < BaseService
       .find_each do |goal|
       last_daily = goal.dailies.last
       if last_daily.status_success?
-        goal.dailies.create(date: Date.current, status: :pending, value: 0)
+        goal.dailies.create(date: Date.current, status: :pending, value: 0, incentive: goal.incentive)
       else
         last_daily.update(date: Date.current)
       end

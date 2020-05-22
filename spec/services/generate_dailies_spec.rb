@@ -4,6 +4,7 @@ describe GenerateDailies do
   subject { described_class.call(user) }
 
   let(:user) { create(:user) }
+  let(:incentive) { create(:incentive, user: user) }
 
   shared_examples 'create new daily' do
     it 'creates new daily' do
@@ -14,7 +15,8 @@ describe GenerateDailies do
       expect(Daily.last).to have_attributes(
         goal_id: goal.id,
         status: 'pending',
-        value: 0
+        value: 0,
+        incentive_id: incentive.id
       )
     end
   end
@@ -26,7 +28,7 @@ describe GenerateDailies do
   end
 
   context 'with per day goal' do
-    let!(:goal) { create(:goal, user: user, period: :per_day) }
+    let!(:goal) { create(:goal, user: user, period: :per_day, incentive: incentive) }
 
     before { create(:daily, goal: goal, date: Date.yesterday) }
 
@@ -46,7 +48,7 @@ describe GenerateDailies do
   end
 
   context 'with per week goal' do
-    let!(:goal) { create(:goal, user: user, period: :per_day) }
+    let!(:goal) { create(:goal, user: user, period: :per_day, incentive: incentive) }
 
     before { create(:daily, goal: goal, date: 14.days.ago.to_date) }
 
@@ -67,7 +69,7 @@ describe GenerateDailies do
 
   context 'with once goal' do
     context 'with incompleted goal' do
-      let!(:goal) { create(:goal, user: user, period: :once, is_completed: false) }
+      let!(:goal) { create(:goal, user: user, period: :once, is_completed: false, incentive: incentive) }
 
       context 'with success daily' do
         before { create(:daily, goal: goal, status: :success, date: Date.yesterday) }
@@ -90,7 +92,7 @@ describe GenerateDailies do
     end
 
     context 'with completed goal' do
-      let!(:goal) { create(:goal, user: user, period: :once, is_completed: true) }
+      let!(:goal) { create(:goal, user: user, period: :once, is_completed: true, incentive: incentive) }
 
       context 'with success daily' do
         before { create(:daily, goal: goal, status: :success, date: Date.yesterday) }

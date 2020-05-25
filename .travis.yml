@@ -23,3 +23,10 @@ script:
   - bundle exec bundler-audit update && bundle exec bundler-audit check
   - bundle exec rubocop
   - bundle exec rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: "Vf0ddkdCe1BaOL/2M3duo6z8kfopaODQmixVeml7cywT6N6n+3ec9a2a3869tQZrNgewPEZhZNb4Ys7oZW848lAIboPDacrjPT1bV0WC6xxibAHKwNHTgkhDY88MynzPxV+EUKIDBau0g9Dfr4KG5VN89C4te4vdoKq1Ciy8MlEK7VMYsoZysm4uhD2zc/rLcjIEf8UfTVEz4WSn6VrnlnVvPFloQWFIk8dSmuX6yiyEpInWkLbREDJ8HVcmgqBGv7GmS8hhrm+qezrDRVKFPnTWDhO6hUofa82UkSymF0tmxck2MEzGGgENxm8PEZY0D7LdZa94RnIWFsq/PJXSSCWpkQvZEkXtftqctaa2Zhb69vrzDgbvkf34J0mbIXgAz6Zs4FciS7R1jmbVgkZRYOmPQqrWBRhr7eHllvshtDe+nWXtlJcFRpbseL/JS0X96VsgeLNHZrDNLWrFFi3keTXv4pBFY1s/YFs0BQBxrSiIZZUQKdqMgE9Re06DqLj55vAVdbByTfA1czAjH9zyKAeCAJvbMVmxbqh8KEZLwUYjkz0qAoXHThpHvqm5a8hdWWg0KncMQ5T6R+iHwN/IBdSqU1QQgw9Yw+76HDXaF2uEUffBpQc8iF2fbm3iqmkG28HoUncdLU1pjqUko516WwzAblJLxD2+9UhcI9Jb7cM="
+  app: goals-and-incentives
+  on:
+    repo: am-dmr/goals-and-incentives

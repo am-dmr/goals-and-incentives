@@ -258,4 +258,31 @@ describe Web::V1::DailiesController do
       end
     end
   end
+
+  describe '#freeze' do
+    subject { patch '/web/1.0/dailies/freeze' }
+
+    context 'without current user' do
+      it 'returns 401' do
+        subject
+        expect(response).to have_http_status(401)
+      end
+      it 'does not call FreezeDailies' do
+        expect(FreezeDailies).not_to receive(:call)
+        subject
+      end
+    end
+
+    context 'with current user' do
+      before { sign_in(user) }
+
+      it 'redirect to dashboard' do
+        expect(subject).to redirect_to(web_v1_dashboard_index_path)
+      end
+      it 'calls FreezeDailies' do
+        expect(FreezeDailies).to receive(:call).with(user, true)
+        subject
+      end
+    end
+  end
 end

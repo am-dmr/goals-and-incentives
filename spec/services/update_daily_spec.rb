@@ -40,4 +40,17 @@ describe UpdateDaily do
       subject
     end
   end
+
+  context 'with yesterday daily' do
+    let(:daily) { create(:daily, value: 3, date: Date.yesterday) }
+    let(:action) { :decrement }
+
+    it 'decrements value' do
+      expect { subject }.to change { daily.reload.value }.to(2)
+    end
+    it 'calls RecalcDailyStatus' do
+      expect(RecalcDailyStatus).to receive(:call).with(daily, current_daily: false)
+      subject
+    end
+  end
 end

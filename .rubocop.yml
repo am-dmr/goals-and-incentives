@@ -35,6 +35,7 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
+    - config/routes.rb
 
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true

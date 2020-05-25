@@ -1,7 +1,8 @@
 - if current_web_v1_user
   .row
     .col
-      %h3 Today
+      %h3
+        = t('dashboard.today')
       %table.table.table-responsive
         %thead.thead-dark
           %tr
@@ -21,7 +22,17 @@
             = render partial: 'web/v1/dailies/row', object: daily, as: 'daily'
   .row
     .col
-      %h3 Yesterday
+      %h3
+        = t('dashboard.yesterday')
+  .row
+    .col
+      = link_to t('dashboard.freeze'),
+                freeze_web_v1_dailies_path,
+                class: 'btn btn-primary button-above-table',
+                method: :patch,
+                role: 'button'
+  .row
+    .col
       %table.table.table-responsive
         %thead.thead-dark
           %tr

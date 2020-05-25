@@ -10,6 +10,6 @@ class UpdateDaily < BaseService
       daily.update(value: daily.value - 1)
     end
 
-    RecalcDailyStatus.call(daily, current_daily: true)
+    RecalcDailyStatus.call(daily, current_daily: daily.date == Date.current)
   end
 end

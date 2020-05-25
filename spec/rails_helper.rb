@@ -26,8 +26,9 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
-  config.include(Shoulda::Matchers::ActiveRecord, type: :model)
+  config.include Shoulda::Matchers::ActiveRecord, type: :model
   config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::IntegrationHelpers, type: :request
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :deletion, { except: %w[spatial_ref_sys] }

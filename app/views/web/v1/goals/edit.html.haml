@@ -1,0 +1,33 @@
+.form
+  = form_with model: @goal, url: web_v1_goal_path(@goal), local: true do |f|
+    = render partial: 'web/v1/shared/form_errors', object: @goal, as: 'object'
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: 'form-control'
+    .form-group
+      = f.label :aim
+      = f.select :aim, Goal.enum_options_for_select(:aim), {}, class: 'form-control'
+    .form-group
+      = f.label :limit
+      = f.number_field :limit, min: 0, step: 1, class: 'form-control'
+    .form-group
+      = f.label :period
+      = f.select :period, Goal.enum_options_for_select(:period), {}, class: 'form-control'
+    .form-group
+      = f.label :size
+      = f.select :size, Goal.enum_options_for_select(:size), {}, class: 'form-control'
+    .form-group
+      = f.label :incentive
+      = f.select :incentive,                                                 |
+                 options_for_select(                                         |
+                   @goal                                                     |
+                     .user                                                   |
+                     .incentives                                             |
+                     .order(Arel.sql("ABS(incentives.size - #{Goal.sizes[@goal.size]}) ASC, name ASC"))  |
+                     .pluck(:name, :id),                                     |
+                   selected:  @goal.incentive&.id                            |
+                 ),                                                          |
+                 { include_blank: true },                                    |
+                 class: 'form-control'                                       |
+    .form-group
+      = f.submit t('goals.update'), class: 'btn btn-primary'

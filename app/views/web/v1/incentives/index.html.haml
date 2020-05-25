@@ -1,0 +1,39 @@
+.container
+  .row
+    .col
+      = link_to t('incentives.new'),
+                new_web_v1_incentive_path,
+                class: 'btn btn-primary button-above-table',
+                role: 'button'
+  .row
+    .col
+      %table.table.table-striped.table-responsive
+        %thead.thead-dark
+          %tr
+            %th{ scope: 'col' }
+              = Incentive.human_attribute_name(:name)
+            %th{ scope: 'col' }
+              = Incentive.human_attribute_name(:size)
+            %th{ scope: 'col' }
+              = Incentive.human_attribute_name(:goals)
+            %th{ scope: 'col' }
+            %th{ scope: 'col' }
+        %tbody
+          - @incentives.each do |incentive|
+            %tr
+              %td
+                = link_to incentive.name, web_v1_incentive_path(incentive)
+              %td
+                = incentive.enum_display(:size)
+              %td
+                - incentive.goals.each do |goal|
+                  %p
+                    = link_to goal.name, web_v1_goal_path(goal)
+              %td
+                = link_to edit_web_v1_incentive_path(incentive) do
+                  %i.fas.fa-edit
+              %td
+                = link_to web_v1_incentive_path(incentive),
+                          method: :delete,
+                          data: { confirm: t('incentives.delete_confirm') } do
+                  %i.fas.fa-trash-alt

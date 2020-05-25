@@ -12,3 +12,16 @@ require("@rails/ujs").start()
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+import 'jquery'
+import 'popper.js'
+import 'bootstrap'
+import '@fortawesome/fontawesome-free/js/all'
+
+import 'css/site'
+
+$(document).ready(function() {
+  setTimeout(
+    function() { $('.alert.should-be-hidden').hide(500); }, 2000
+  );
+});

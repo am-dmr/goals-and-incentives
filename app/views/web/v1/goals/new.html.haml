@@ -1,0 +1,25 @@
+.form
+  = form_with model: @goal, url: web_v1_goals_path, local: true do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: 'form-control'
+    .form-group
+      = f.label :aim
+      = f.select :aim, Goal.enum_options_for_select(:aim), {}, class: 'form-control'
+    .form-group
+      = f.label :limit
+      = f.number_field :limit, min: 0, step: 1, class: 'form-control'
+    .form-group
+      = f.label :period
+      = f.select :period, Goal.enum_options_for_select(:period), {}, class: 'form-control'
+    .form-group
+      = f.label :size
+      = f.select :size, Goal.enum_options_for_select(:size), {}, class: 'form-control'
+    .form-group
+      = f.label :incentive
+      = f.select :incentive,
+                 @goal.user.incentives.order(name: :asc).pluck(:name, :id),
+                 { include_blank: true },
+                 class: 'form-control'
+    .form-group
+      = f.submit t('goals.create'), class: 'btn btn-primary'

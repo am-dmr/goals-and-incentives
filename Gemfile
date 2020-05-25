@@ -17,6 +17,8 @@ gem 'devise'
 
 group :development, :test do
   gem 'byebug'
+  gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'timecop'
@@ -33,4 +35,7 @@ group :development do
   gem 'rubocop-rspec', '= 1.38.1'
   gem 'rubocop-performance', '= 1.5.2'
   gem 'rubocop-rails', '= 2.5.2'
+  gem 'bundler-audit', github: 'rubysec/bundler-audit'
+
+  gem 'foreman'
 end

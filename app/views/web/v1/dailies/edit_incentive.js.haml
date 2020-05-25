@@ -1,0 +1,5 @@
+$('.modal').remove();
+$('body').append("#{escape_javascript(render(partial: 'web/v1/dailies/edit_incentive', object: @daily, as: 'daily'))}");
+$('.modal').show();
+
+$('button.close').on('click', function() { $('.modal').remove(); });

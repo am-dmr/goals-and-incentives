@@ -1,0 +1,87 @@
+// sass variable overrides
+// $body-bg: aliceblue;
+
+@import "~bootstrap/scss/bootstrap.scss";
+@import "@fortawesome/fontawesome-free";
+
+@include media-breakpoint-down(lg) {
+  $font-size-base: 2rem;
+
+  body, .navbar-brand, .btn, .form-control {
+    font-size: $font-size-base;
+  }
+}
+
+.button-above-table {
+  margin: $font-size-base 0;
+}
+
+.field_with_errors label,
+.field_with_errors .form-control-feedback,
+.field_with_errors .form-control-label,
+.field_with_errors .col-form-label,
+.field_with_errors .form-check-label,
+.field_with_errors .custom-control {
+  color: #d9534f;
+}
+
+.field_with_errors .form-control {
+  border-color: #d9534f;
+}
+
+.field_with_errors .input-group-addon {
+  color: #d9534f;
+  border-color: #d9534f;
+  background-color: #fdf7f7;
+}
+
+.flash-alert {
+  position: fixed;
+  top: 5vh;
+  left: 5vw;
+}
+
+.daily-row-pending {
+  color: #383d41;
+}
+
+.daily-row-failed {
+  color: #721c24;
+}
+
+.daily-row-success {
+  color: #155724;
+}
+
+.stats-pending {
+  background-color: #eeeeee;
+  border: 1px solid #333333;
+}
+
+.stats-failed {
+  background-color: #dc3545;
+  border: 1px solid #333333;
+}
+
+.stats-success {
+  border: 1px solid #333333;
+
+  &.stats-incentive-none {
+    background: linear-gradient(to bottom right, #28a745 50%, #eeeeee 50%);
+  }
+
+  &.stats-incentive-success {
+    background-color: #28a745;
+  }
+
+  &.stats-incentive-failed {
+    background: linear-gradient(to bottom right, #28a745 50%, #dc3545 50%);
+  }
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 20rem;
+  padding: 1rem;
+  margin: auto;
+}

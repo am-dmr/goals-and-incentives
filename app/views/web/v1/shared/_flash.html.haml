@@ -1,0 +1,6 @@
+.container
+  - flash.each do |type, msg|
+    - alert_class = type.to_s == 'alert' ? 'alert-danger' : 'alert-success'
+    %div{ class: "alert should-be-hidden #{alert_class} alert-dismissable fade show flash-alert" }
+      = msg
+      %button.close{ 'data-dismiss' => 'alert' } ×

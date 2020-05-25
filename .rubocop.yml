@@ -23,6 +23,20 @@ Bundler/OrderedGems:
 Layout/LineLength:
   Max: 120
 
+Metrics/AbcSize:
+  Max: 21
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+    - config/routes.rb
+
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 
@@ -43,3 +57,24 @@ Style/HashTransformKeys:
 
 Style/HashTransformValues:
   Enabled: true
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/ExpectChange:
+  EnforcedStyle: block
+
+RSpec/EmptyLineAfterExample:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 6
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive

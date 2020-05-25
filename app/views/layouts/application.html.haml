@@ -1,8 +1,7 @@
 !!! 5
 %html
   %head
-    %title
-      GoalsAndIncentives
+    %title GoalsAndIncentives
     = csrf_meta_tags
     = csp_meta_tag
 
@@ -10,4 +9,39 @@
     = javascript_pack_tag 'application'
 
   %body
-    = yield
+    %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.mb-4
+      %a.navbar-brand{ href: root_path } Goals & Incentives
+      %button.navbar-toggler{ 'aria-controls' => 'navbarCollapse',
+                              'aria-expanded' => 'false',
+                              'aria-label' => 'Toggle navigation',
+                              'data-target' => '#navbarCollapse',
+                              'data-toggle' => 'collapse',
+                              type: 'button' }
+        %span.navbar-toggler-icon
+
+      #navbarCollapse.collapse.navbar-collapse
+        - if web_v1_user_signed_in?
+          %ul.navbar-nav.mr-auto
+            %li.nav-item{ class: controller.controller_name == 'dashboard' ? 'nav-item active' : 'nav-item' }
+              %a.nav-link{ href: web_v1_dashboard_index_path}
+                = t('menu.daily')
+            %li{ class: controller.controller_name == 'goals' ? 'nav-item active' : 'nav-item' }
+              %a.nav-link{ href: web_v1_goals_path }
+                = t('menu.goals')
+            %li{ class: controller.controller_name == 'incentives' ? 'nav-item active' : 'nav-item' }
+              %a.nav-link{ href: web_v1_incentives_path }
+                = t('menu.incentives')
+          %ul.navbar-nav.ml-md-auto
+            %li.nav-item
+              %a.nav-link{ href: destroy_web_v1_user_session_path, 'data-method' => 'delete' }
+                = t('menu.logout')
+        - else
+          %ul.navbar-nav.mr-auto
+            %li.nav-item
+              %a.nav-link{ href: new_web_v1_user_session_path }
+                = t('menu.login')
+
+    %main.container{ role: 'container' }
+      = yield
+
+    = render partial: 'web/v1/shared/flash', flash: flash

@@ -1,6 +1,7 @@
 - if current_web_v1_user
   .row
     .col
+      %h3 Today
       %table.table.table-responsive
         %thead.thead-dark
           %tr
@@ -16,7 +17,27 @@
               = Goal.human_attribute_name(:incentive)
             %th{ scope: 'col' }
         %tbody
-          - @dailies.each do |daily|
+          - @today_dailies.each do |daily|
+            = render partial: 'web/v1/dailies/row', object: daily, as: 'daily'
+  .row
+    .col
+      %h3 Yesterday
+      %table.table.table-responsive
+        %thead.thead-dark
+          %tr
+            %th{ scope: 'col' }
+              = Daily.human_attribute_name(:goal)
+            %th{ scope: 'col' }
+              = Daily.human_attribute_name(:value)
+            %th{ scope: 'col' }
+              = Goal.human_attribute_name(:aim)
+            %th{ scope: 'col' }
+              = Daily.human_attribute_name(:status)
+            %th{ scope: 'col' }
+              = Goal.human_attribute_name(:incentive)
+            %th{ scope: 'col' }
+        %tbody
+          - @yesterday_dailies.each do |daily|
             = render partial: 'web/v1/dailies/row', object: daily, as: 'daily'
   .row
     .col
@@ -33,4 +54,4 @@
                 = link_to dailies[:name], web_v1_goal_path(goal_id)
               - (0..9).to_a.reverse.each do |i|
                 - daily = dailies[i.days.ago.to_date.strftime('%d%m')]
-                %td{ class: "stats-#{daily.try(:[], :status) || 'pending'}" }
+                %td{ class: "stats-#{daily.try(:[], :status) || 'pending'} stats-incentive-#{daily.try(:[], :incentive_status) || 'none'}" }

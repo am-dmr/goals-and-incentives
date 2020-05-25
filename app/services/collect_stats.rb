@@ -15,7 +15,7 @@ class CollectStats < BaseService
       if daily.goal.period_per_week?
         fill_week(daily, goal)
       else
-        goal[daily.date.strftime('%d%m')] = { status: daily.status }
+        goal[daily.date.strftime('%d%m')] = { status: daily.status, incentive_status: daily.incentive_status }
       end
     end
 
@@ -25,6 +25,8 @@ class CollectStats < BaseService
   private
 
   def fill_week(daily, goal)
-    (daily.date..daily.date.end_of_week).each { |day| goal[day.strftime('%d%m')] = { status: daily.status } }
+    (daily.date..daily.date.end_of_week).each do |day|
+      goal[day.strftime('%d%m')] = { status: daily.status, incentive_status: daily.incentive_status }
+    end
   end
 end

@@ -54,18 +54,29 @@
 }
 
 .stats-pending {
-  background-color: #e2e3e5;
+  background-color: #eeeeee;
   border: 1px solid #333333;
 }
 
 .stats-failed {
-  background-color: #f5c6cb;
+  background-color: #dc3545;
   border: 1px solid #333333;
 }
 
 .stats-success {
-  background: linear-gradient(to bottom right, #c3e6cb 50%, #f5c6cb 50%);
   border: 1px solid #333333;
+
+  &.stats-incentive-none {
+    background: linear-gradient(to bottom right, #28a745 50%, #eeeeee 50%);
+  }
+
+  &.stats-incentive-success {
+    background-color: #28a745;
+  }
+
+  &.stats-incentive-failed {
+    background: linear-gradient(to bottom right, #28a745 50%, #dc3545 50%);
+  }
 }
 
 .form-signin {

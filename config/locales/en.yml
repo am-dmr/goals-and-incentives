@@ -5,6 +5,10 @@ en:
     incentives: Incentives
     login: Login
     logout: Logout
+  dashboard:
+    today: Today
+    yesterday: Yesterday
+    freeze: Freeze
   goals:
     new: New Goal
     create: Create

@@ -22,6 +22,9 @@ Rails.application.routes.draw do
           patch :update_incentive
           patch :toggle_incentive_status
         end
+        collection do
+          patch :freeze
+        end
       end
     end
   end

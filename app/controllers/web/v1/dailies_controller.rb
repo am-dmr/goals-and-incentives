@@ -31,6 +31,11 @@ module Web
         @daily = current_web_v1_user.dailies.find(params[:id])
         @daily.update(incentive_status: @daily.incentive_status_success? ? :failed : :success)
       end
+
+      def freeze
+        FreezeDailies.call(current_web_v1_user, true)
+        redirect_to web_v1_dashboard_index_path
+      end
     end
   end
 end

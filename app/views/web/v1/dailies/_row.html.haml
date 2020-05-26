@@ -8,7 +8,7 @@
     = link_to decrement_web_v1_daily_path(daily), method: :patch, remote: true do
       %i.fas.fa-minus-square
   %td
-    = "#{daily.goal.enum_display(:aim)} #{daily.goal.limit}"
+    = "#{daily.goal.display_aim} #{daily.goal.limit}"
   %td{ class: "daily-row-#{daily.status}" }
     - case daily.status
     - when 'pending'

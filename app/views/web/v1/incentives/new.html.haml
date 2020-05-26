@@ -5,6 +5,6 @@
       = f.text_field :name, class: 'form-control'
     .form-group
       = f.label :size
-      = f.select :size, Incentive.enum_options_for_select(:size), {}, class: 'form-control'
+      = f.select :size, Incentive.size_options_for_select, {}, class: 'form-control'
     .form-group
       = f.submit t('incentives.create'), class: 'btn btn-primary'

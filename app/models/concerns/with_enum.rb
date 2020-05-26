@@ -3,7 +3,7 @@ module WithEnum
 
   included do |base|
     base.class_eval do
-      base.attribute_types.select { |_, v| v.is_a?(ActiveRecord::Enum::EnumType) }.keys.each do |enum_attr|
+      base.attribute_types.select { |_, v| v.is_a?(ActiveRecord::Enum::EnumType) }.each_key do |enum_attr|
         define_singleton_method("display_#{enum_attr}") do |value|
           base.human_attribute_name([enum_attr, value].join('/'))
         end

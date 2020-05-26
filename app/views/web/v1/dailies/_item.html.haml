@@ -1,4 +1,4 @@
-.daily-item{ 'data-daily-id' => daily.id }
+.daily-item{ 'data-daily-id' => daily.id, class: "daily-item-#{daily.status}" }
   .row
     .col
       = link_to daily.goal.name, web_v1_goal_path(daily.goal)
@@ -9,7 +9,7 @@
         = daily.value
       %span
         = "#{daily.goal.display_aim} #{daily.goal.limit}"
-      %span{ class: "daily-item-#{daily.status}" }
+      %span
         - case daily.status
         - when 'pending'
           %i.fas.fa-spinner

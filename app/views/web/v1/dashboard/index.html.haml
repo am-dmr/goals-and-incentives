@@ -1,33 +1,36 @@
 - if current_web_v1_user
   .row
-    .col
-      %h3
-        = t('dashboard.today')
-      - @today_dailies.each do |daily|
-        = render partial: 'web/v1/dailies/item', object: daily, as: 'daily'
+    .col-lg-6.col-12.dailies-section
+      .row
+        .col
+          %h3
+            = t('dashboard.today')
+      .row
+        .col
+          - @today_dailies.each do |daily|
+            = render partial: 'web/v1/dailies/item', object: daily, as: 'daily'
+    .col-lg-6.col-12.dailies-section
+      .row
+        .col-6
+          %h3
+            = t('dashboard.yesterday')
+        .col-6
+          = link_to t('dashboard.freeze'),
+                    freeze_web_v1_dailies_path,
+                    class: 'btn btn-primary',
+                    method: :patch,
+                    role: 'button'
+      .row
+        .col
+          - @yesterday_dailies.each do |daily|
+            = render partial: 'web/v1/dailies/item', object: daily, as: 'daily'
 
-  .row
-    .col
-      %h3
-        = t('dashboard.yesterday')
-  .row
-    .col
-      = link_to t('dashboard.freeze'),
-                freeze_web_v1_dailies_path,
-                class: 'btn btn-primary button-above-table',
-                method: :patch,
-                role: 'button'
-  .row
-    .col
-      - @yesterday_dailies.each do |daily|
-        = render partial: 'web/v1/dailies/item', object: daily, as: 'daily'
-
-  .row
+  .row.stats-section
     .col
       %h3
         = t('dashboard.stats')
   - @stats.each do |goal_id, dailies|
-    .row
+    .row.stats-row
       .col-lg-2.col-4.stats-goal-name
         = link_to dailies[:name], web_v1_goal_path(goal_id)
       - (0..9).to_a.reverse.each do |i|

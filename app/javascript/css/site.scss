@@ -4,11 +4,17 @@
 @import "~bootstrap/scss/bootstrap.scss";
 @import "@fortawesome/fontawesome-free";
 
+h3 {
+  font-size: 2rem;
+  padding: 0 0 0 1rem;
+}
+
 @include media-breakpoint-down(lg) {
   $font-size-base: 3rem;
 
   h3 {
     font-size: 4rem;
+    padding: 0 0 0 2rem;
   }
 
   body, .navbar-brand, .btn, .form-control, .navbar-toggler {
@@ -53,9 +59,15 @@
   left: 5vw;
 }
 
+.dailies-section {
+  padding: 2rem 0;
+  border-bottom: 0.1rem solid #c6c8ca;
+}
+
 .daily-item {
-  border-bottom: 0.1rem solid #cce5ff;
+  border-radius: 1rem;
   padding: 1rem;
+  margin: 1rem;
 
   a {
     font-weight: bold;
@@ -70,9 +82,15 @@
 }
 
 @include media-breakpoint-down(lg) {
+  .dailies-section {
+    padding: 3rem 0;
+    border-bottom: 0.2rem solid #c6c8ca;
+  }
+
   .daily-item {
-    border-bottom: 0.2rem solid #cce5ff;
+    border-radius: 2rem;
     padding: 2rem;
+    margin: 2rem;
 
     a {
       font-weight: bold;
@@ -88,15 +106,35 @@
 }
 
 .daily-item-pending {
-  color: #383d41;
+  background-color: #cce5ff;
+
+  a {
+    color: #004085;
+  }
 }
 
 .daily-item-failed {
-  color: #721c24;
+  background-color: #f8d7da;
+
+  a {
+    color: #721c24;
+  }
 }
 
 .daily-item-success {
-  color: #155724;
+  background-color: #d4edda;
+
+  a {
+    color: #155724;
+  }
+}
+
+.stats-section {
+  padding: 2rem 0;
+}
+
+.stats-row {
+  padding: 0 0 0 1rem;
 }
 
 .stats-goal-name {
@@ -110,13 +148,21 @@
 }
 
 @include media-breakpoint-down(lg) {
+  .stats-section {
+    padding: 3rem 0;
+  }
+
+  .stats-row {
+    padding: 0 0 0 2rem;
+  }
+
   .stats-goal-name {
     font-size: 75%;
   }
 
   .stats-day {
-    width: 6.5vw;
-    height: 6.5vw;
+    width: 6vw;
+    height: 6vw;
     border: 0.1rem solid white;
   }
 }

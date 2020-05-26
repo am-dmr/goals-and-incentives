@@ -2,7 +2,7 @@ en:
   menu:
     daily: Daily
     goals: Goals
-    incentives: Incentives
+    incentives: Rewards
     login: Login
     logout: Logout
   dashboard:
@@ -24,18 +24,18 @@ en:
     delete_ok: Goal successfully deleted
     delete_error: Unable to delete Goal
   incentives:
-    new: New Incentive
+    new: New Reward
     create: Create
-    create_ok: New Incentive successfully created
-    create_error: Unable to create new Incentive
+    create_ok: New Reward successfully created
+    create_error: Unable to create new Reward
     edit: Edit
     update: Update
-    update_ok: Incentive successfully updated
-    update_error: Unable to update Incentive
+    update_ok: Reward successfully updated
+    update_error: Unable to update Reward
     delete: Delete
     delete_confirm: Are you sure?
-    delete_ok: Incentive successfully deleted
-    delete_error: Unable to delete Incentive
+    delete_ok: Reward successfully deleted
+    delete_error: Unable to delete Reward
   dailies:
     increase: ➕
     decrease: ➖
@@ -70,6 +70,7 @@ en:
         size/xl: XL
         size/xxl: XXL
         size/xxxl: XXXL
+        incentive: Reward
       incentive:
         name: Name
         size: Size
@@ -82,7 +83,7 @@ en:
         size/xxxl: XXXL
       daily:
         goal: Goal
-        incentive: Incentive
+        incentive: Reward
         value: Value
         date: Date
         status: Status

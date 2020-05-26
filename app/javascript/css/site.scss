@@ -5,10 +5,22 @@
 @import "@fortawesome/fontawesome-free";
 
 @include media-breakpoint-down(lg) {
-  $font-size-base: 2rem;
+  $font-size-base: 3rem;
+
+  h3 {
+    font-size: 4rem;
+  }
 
   body, .navbar-brand, .btn, .form-control {
     font-size: $font-size-base;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  .table th, .table td {
+    padding: 1.5rem;
   }
 }
 

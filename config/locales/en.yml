@@ -9,6 +9,7 @@ en:
     today: Today
     yesterday: Yesterday
     freeze: Freeze
+    stats: Stats
   goals:
     new: New Goal
     create: Create

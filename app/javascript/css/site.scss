@@ -11,7 +11,7 @@
     font-size: 4rem;
   }
 
-  body, .navbar-brand, .btn, .form-control {
+  body, .navbar-brand, .btn, .form-control, .navbar-toggler {
     font-size: $font-size-base;
   }
 
@@ -53,31 +53,83 @@
   left: 5vw;
 }
 
-.daily-row-pending {
+.daily-item {
+  border-bottom: 0.1rem solid #cce5ff;
+  padding: 1rem;
+
+  a {
+    font-weight: bold;
+    font-size: 120%;
+  }
+
+  span {
+    font-weight: bold;
+    font-size: 120%;
+    padding: 0 0 0 1%;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .daily-item {
+    border-bottom: 0.2rem solid #cce5ff;
+    padding: 2rem;
+
+    a {
+      font-weight: bold;
+      font-size: 120%;
+    }
+
+    span {
+      font-weight: bold;
+      font-size: 120%;
+      padding: 0 0 0 3%;
+    }
+  }
+}
+
+.daily-item-pending {
   color: #383d41;
 }
 
-.daily-row-failed {
+.daily-item-failed {
   color: #721c24;
 }
 
-.daily-row-success {
+.daily-item-success {
   color: #155724;
+}
+
+.stats-goal-name {
+  font-size: 100%;
+}
+
+.stats-day {
+  width: 3vw;
+  height: 3vw;
+  border: 0.1rem solid white;
+}
+
+@include media-breakpoint-down(lg) {
+  .stats-goal-name {
+    font-size: 75%;
+  }
+
+  .stats-day {
+    width: 6.5vw;
+    height: 6.5vw;
+    border: 0.1rem solid white;
+  }
 }
 
 .stats-pending {
   background-color: #eeeeee;
-  border: 1px solid #333333;
 }
 
 .stats-failed {
   background-color: #dc3545;
-  border: 1px solid #333333;
 }
 
 .stats-success {
-  border: 1px solid #333333;
-
   &.stats-incentive-none {
     background: linear-gradient(to bottom right, #28a745 50%, #eeeeee 50%);
   }

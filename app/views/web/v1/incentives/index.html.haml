@@ -24,7 +24,7 @@
               %td
                 = link_to incentive.name, web_v1_incentive_path(incentive)
               %td
-                = incentive.enum_display(:size)
+                = incentive.display_size
               %td
                 - incentive.goals.each do |goal|
                   %p

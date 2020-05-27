@@ -30,7 +30,7 @@
       = Goal.human_attribute_name(:aim)
     .col-lg-10.col-8
       %strong
-        = @goal.enum_display(:aim)
+        = @goal.display_aim
   .row
     .col-lg-2.col-4
       = Goal.human_attribute_name(:limit)
@@ -42,13 +42,13 @@
       = Goal.human_attribute_name(:period)
     .col-lg-10.col-8
       %strong
-        = @goal.enum_display(:period)
+        = @goal.display_period
   .row
     .col-lg-2.col-4
       = Goal.human_attribute_name(:size)
     .col-lg-10.col-8
       %strong
-        = @goal.enum_display(:size)
+        = @goal.display_size
   .row
     .col-lg-2.col-4
       = Goal.human_attribute_name(:incentive)

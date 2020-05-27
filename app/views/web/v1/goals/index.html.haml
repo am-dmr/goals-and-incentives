@@ -31,13 +31,13 @@
               %td
                 = link_to goal.name, web_v1_goal_path(goal)
               %td
-                = goal.enum_display(:aim)
+                = goal.display_aim
               %td
                 = goal.limit
               %td
-                = goal.enum_display(:period)
+                = goal.display_period
               %td
-                = goal.enum_display(:size)
+                = goal.display_size
               %td
                 - if goal.incentive.present?
                   = link_to goal.incentive.name, web_v1_incentive_path(goal.incentive)

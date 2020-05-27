@@ -1,0 +1,43 @@
+.daily-item{ 'data-daily-id' => daily.id, class: "daily-item-#{daily.status}" }
+  .row
+    .col
+      = link_to daily.goal.name, web_v1_goal_path(daily.goal)
+  .row
+    .col-lg-1.col-2
+    .col-lg-11.col-10
+      %span
+        = daily.value
+      %span
+        = "#{daily.goal.display_aim} #{daily.goal.limit}"
+      %span
+        - case daily.status
+        - when 'pending'
+          %i.fas.fa-spinner
+        - when 'failed'
+          %i.fas.fa-times-circle
+        - when 'success'
+          %i.fas.fa-check-circle
+      %span
+        = link_to increment_web_v1_daily_path(daily), method: :patch, remote: true do
+          %i.fas.fa-plus-square
+      %span
+        = link_to decrement_web_v1_daily_path(daily), method: :patch, remote: true do
+          %i.fas.fa-minus-square
+  .row
+    .col-lg-1.col-2
+    .col-lg-11.col-10
+      %span
+        %i.fas.fa-medal
+      - if daily.incentive.present?
+        %span
+          = link_to daily.incentive.name, web_v1_incentive_path(daily.incentive)
+      %span
+        = link_to edit_incentive_web_v1_daily_path(daily), remote: true do
+          %i.fas.fa-edit
+      - if daily.incentive.present?
+        %span
+          = link_to toggle_incentive_status_web_v1_daily_path(daily), method: :patch, remote: true do
+            - if daily.incentive_status_success?
+              %i.far.fa-check-square
+            - else
+              %i.far.fa-square

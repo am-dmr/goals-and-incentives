@@ -1,2 +1,2 @@
 $('.modal').remove();
-$('tr[data-daily-id="#{@daily.id}"]').replaceWith("#{escape_javascript(render(partial: 'web/v1/dailies/row', object: @daily, as: 'daily'))}");
+$('daily-item[data-daily-id="#{@daily.id}"]').replaceWith("#{escape_javascript(render(partial: 'web/v1/dailies/item', object: @daily, as: 'daily'))}");

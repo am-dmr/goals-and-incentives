@@ -4,11 +4,29 @@
 @import "~bootstrap/scss/bootstrap.scss";
 @import "@fortawesome/fontawesome-free";
 
-@include media-breakpoint-down(lg) {
-  $font-size-base: 2rem;
+h3 {
+  font-size: 2rem;
+  padding: 0 0 0 1rem;
+}
 
-  body, .navbar-brand, .btn, .form-control {
+@include media-breakpoint-down(lg) {
+  $font-size-base: 3rem;
+
+  h3 {
+    font-size: 4rem;
+    padding: 0 0 0 2rem;
+  }
+
+  body, .navbar-brand, .btn, .form-control, .navbar-toggler {
     font-size: $font-size-base;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  .table th, .table td {
+    padding: 1.5rem;
   }
 }
 
@@ -41,31 +59,123 @@
   left: 5vw;
 }
 
-.daily-row-pending {
-  color: #383d41;
+.dailies-section {
+  padding: 2rem 0;
+  border-bottom: 0.1rem solid #c6c8ca;
 }
 
-.daily-row-failed {
-  color: #721c24;
+.daily-item {
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+
+  a {
+    font-weight: bold;
+    font-size: 120%;
+  }
+
+  span {
+    font-weight: bold;
+    font-size: 120%;
+    padding: 0 0 0 1%;
+  }
 }
 
-.daily-row-success {
-  color: #155724;
+@include media-breakpoint-down(lg) {
+  .dailies-section {
+    padding: 3rem 0;
+    border-bottom: 0.2rem solid #c6c8ca;
+  }
+
+  .daily-item {
+    border-radius: 2rem;
+    padding: 2rem;
+    margin: 2rem;
+
+    a {
+      font-weight: bold;
+      font-size: 120%;
+    }
+
+    span {
+      font-weight: bold;
+      font-size: 120%;
+      padding: 0 0 0 3%;
+    }
+  }
+}
+
+.daily-item-pending {
+  background-color: #cce5ff;
+
+  a {
+    color: #004085;
+  }
+}
+
+.daily-item-failed {
+  background-color: #f8d7da;
+
+  a {
+    color: #721c24;
+  }
+}
+
+.daily-item-success {
+  background-color: #d4edda;
+
+  a {
+    color: #155724;
+  }
+}
+
+.stats-section {
+  padding: 2rem 0;
+}
+
+.stats-row {
+  padding: 0 0 0 1rem;
+}
+
+.stats-goal-name {
+  font-size: 100%;
+}
+
+.stats-day {
+  width: 3vw;
+  height: 3vw;
+  border: 0.1rem solid white;
+}
+
+@include media-breakpoint-down(lg) {
+  .stats-section {
+    padding: 3rem 0;
+  }
+
+  .stats-row {
+    padding: 0 0 0 2rem;
+  }
+
+  .stats-goal-name {
+    font-size: 75%;
+  }
+
+  .stats-day {
+    width: 6vw;
+    height: 6vw;
+    border: 0.1rem solid white;
+  }
 }
 
 .stats-pending {
   background-color: #eeeeee;
-  border: 1px solid #333333;
 }
 
 .stats-failed {
   background-color: #dc3545;
-  border: 1px solid #333333;
 }
 
 .stats-success {
-  border: 1px solid #333333;
-
   &.stats-incentive-none {
     background: linear-gradient(to bottom right, #28a745 50%, #eeeeee 50%);
   }

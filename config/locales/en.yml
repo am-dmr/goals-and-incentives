@@ -41,6 +41,13 @@ en:
     decrease: ➖
     edit_incentive: Edit incentive
     update_incentive: Update incentive
+    current_value: Current value
+    aim: Aim
+    status:
+      pending: In progress
+      success: Success
+      failed: Failed
+    reward: Reward
   activerecord:
     errors:
       models:

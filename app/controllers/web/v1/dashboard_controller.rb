@@ -2,6 +2,7 @@ module Web
   module V1
     class DashboardController < BaseController
       def index
+        DropOldDailies.call(current_web_v1_user)
         GenerateDailies.call(current_web_v1_user)
         FreezeDailies.call(current_web_v1_user)
 

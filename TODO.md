@@ -1,8 +1,6 @@
-* Optimize UI (especially stats + statuses)
-* Optimize mobile UI
-* Save "daily generated" & "yesterday frozen" for user
+* Optimize UI (CRUD Goals & Incentives)
+* Save "daily generated" & "yesterday frozen" & "old dailies dropped" for user
 * README
 * API v2 + Vue.js
 * Daily analytics?
 * Week analytics?
-* Drop old dailies?

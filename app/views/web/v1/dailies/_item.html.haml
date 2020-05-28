@@ -5,11 +5,11 @@
   .row
     .col-lg-1.col-2
     .col-lg-11.col-10
-      %span
+      %span{ 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => t('dailies.current_value') }
         = daily.value
-      %span
+      %span{ 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => t('dailies.aim') }
         = "#{daily.goal.display_aim} #{daily.goal.limit}"
-      %span
+      %span{ 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => t("dailies.status.#{daily.status}") }
         - case daily.status
         - when 'pending'
           %i.fas.fa-spinner
@@ -26,7 +26,7 @@
   .row
     .col-lg-1.col-2
     .col-lg-11.col-10
-      %span
+      %span{ 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => t('dailies.reward') }
         %i.fas.fa-medal
       - if daily.incentive.present?
         %span

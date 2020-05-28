@@ -24,4 +24,6 @@ $(document).ready(function() {
   setTimeout(
     function() { $('.alert.should-be-hidden').hide(500); }, 2000
   );
+
+  $('[data-toggle="tooltip"]').tooltip()
 });

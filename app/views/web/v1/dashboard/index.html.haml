@@ -25,8 +25,8 @@
           - @yesterday_dailies.each do |daily|
             = render partial: 'web/v1/dailies/item', object: daily, as: 'daily'
 
-  .row.stats-section
-    .col
+  .row
+    .col.stats-section
       %h3
         = t('dashboard.stats')
   - @stats.each do |goal_id, dailies|
@@ -34,5 +34,9 @@
       .col-lg-2.col-4.stats-goal-name
         = link_to dailies[:name], web_v1_goal_path(goal_id)
       - (0..9).to_a.reverse.each do |i|
-        - daily = dailies[i.days.ago.to_date.strftime('%d%m')]
-        .stats-day{ class: "stats-#{daily.try(:[], :status) || 'pending'} stats-incentive-#{daily.try(:[], :incentive_status) || 'none'}" }
+        - date = i.days.ago.to_date
+        - daily = dailies[date.strftime('%d%m')]
+        .stats-day{ class: "stats-#{daily.try(:[], :status) || 'pending'} stats-incentive-#{daily.try(:[], :incentive_status) || 'none'}",
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'top',
+                    'title' => date.strftime('%d.%m') }

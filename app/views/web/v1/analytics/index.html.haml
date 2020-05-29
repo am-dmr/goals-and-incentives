@@ -13,3 +13,26 @@
                   'data-toggle' => 'tooltip',
                   'data-placement' => 'top',
                   'title' => date.strftime('%d.%m') }
+
+.row
+  .col.analytics-section
+    %h3
+      = t('dashboard.analytics')
+.row
+  .col.analytics-row
+    %h4
+      = t('analytics.daily_statuses')
+
+    - values = @analytics[:daily]
+    = render partial: 'web/v1/analytics/row', locals: { values: values[:this_week], progress_bar_class: 'bg-success' }
+    = render partial: 'web/v1/analytics/row', locals: { values: values[:prev_week], progress_bar_class: 'bg-info' }
+    = render partial: 'web/v1/analytics/row', locals: { values: values[:prev_prev_week], progress_bar_class: 'bg-secondary' }
+.row
+  .col.analytics-row
+    %h4
+      = t('analytics.weekly_statuses')
+
+    - values = @analytics[:weekly]
+    = render partial: 'web/v1/analytics/row', locals: { values: values[:this_week], progress_bar_class: 'bg-success' }
+    = render partial: 'web/v1/analytics/row', locals: { values: values[:prev_week], progress_bar_class: 'bg-info' }
+    = render partial: 'web/v1/analytics/row', locals: { values: values[:prev_prev_week], progress_bar_class: 'bg-secondary' }

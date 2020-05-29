@@ -1,4 +1,5 @@
-* Daily & Weekly analytics
-* Optimize UI (CRUD Goals & Incentives)
-* README
-* API v2 + Vue.js
+- Daily & Weekly analytics improvement
+- Optimize UI (CRUD Goals & Incentives)
+- Language switcher & RU locale
+- README
+- API v2 + Vue.js

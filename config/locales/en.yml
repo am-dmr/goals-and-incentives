@@ -11,6 +11,7 @@ en:
     yesterday: Yesterday
     freeze: Freeze
     stats: Stats
+    analytics: Analytics
   goals:
     new: New Goal
     create: Create
@@ -49,6 +50,9 @@ en:
       success: Success
       failed: Failed
     reward: Reward
+  analytics:
+    daily_statuses: Daily statuses
+    weekly_statuses: Weekly statuses
   activerecord:
     errors:
       models:

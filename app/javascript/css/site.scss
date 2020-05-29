@@ -9,6 +9,16 @@ h3 {
   padding: 0 0 0 1rem;
 }
 
+h4 {
+  font-size: 1.5rem;
+}
+
+.progress {
+  font-size: 2rem;
+  height: 3rem;
+  margin: 0.5rem 0;
+}
+
 @include media-breakpoint-down(lg) {
   $font-size-base: 3rem;
 
@@ -17,8 +27,18 @@ h3 {
     padding: 0 0 0 2rem;
   }
 
-  body, .navbar-brand, .btn, .form-control, .navbar-toggler {
+  h4 {
+    font-size: 3rem;
+  }
+
+  body, .navbar-brand, .btn, .form-control, .navbar-toggler, .tooltip-inner {
     font-size: $font-size-base;
+  }
+
+  .progress {
+    font-size: 3rem;
+    height: 4rem;
+    margin: 1rem 0;
   }
 
   .container {
@@ -186,6 +206,24 @@ h3 {
 
   &.stats-incentive-failed {
     background: linear-gradient(to bottom right, #28a745 50%, #dc3545 50%);
+  }
+}
+
+.analytics-section {
+  padding: 2rem 0;
+}
+
+.analytics-row {
+  padding: 0 1rem;
+}
+
+@include media-breakpoint-down(lg) {
+  .analytics-section {
+    padding: 3rem 0;
+  }
+
+  .analytics-row {
+    padding: 0 2rem;
   }
 }
 

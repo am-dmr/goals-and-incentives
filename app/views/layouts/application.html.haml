@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title GoalsAndIncentives
+    %title Goals and Rewards
     = csrf_meta_tags
     = csp_meta_tag
 
@@ -10,7 +10,7 @@
 
   %body
     %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.mb-4
-      %a.navbar-brand{ href: root_path } Goals & Incentives
+      %a.navbar-brand{ href: root_path } Goals and Rewards
       %button.navbar-toggler{ 'aria-controls' => 'navbarCollapse',
                               'aria-expanded' => 'false',
                               'aria-label' => 'Toggle navigation',
@@ -31,6 +31,9 @@
             %li{ class: controller.controller_name == 'incentives' ? 'nav-item active' : 'nav-item' }
               %a.nav-link{ href: web_v1_incentives_path }
                 = t('menu.incentives')
+            %li{ class: controller.controller_name == 'analytics' ? 'nav-item active' : 'nav-item' }
+              %a.nav-link{ href: web_v1_analytics_path }
+                = t('menu.analytics')
           %ul.navbar-nav.ml-md-auto
             %li.nav-item
               %a.nav-link{ href: destroy_web_v1_user_session_path, 'data-method' => 'delete' }

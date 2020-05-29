@@ -3,6 +3,7 @@ en:
     daily: Daily
     goals: Goals
     incentives: Rewards
+    analytics: Analytics
     login: Login
     logout: Logout
   dashboard:
@@ -10,6 +11,7 @@ en:
     yesterday: Yesterday
     freeze: Freeze
     stats: Stats
+    analytics: Analytics
   goals:
     new: New Goal
     create: Create
@@ -41,6 +43,16 @@ en:
     decrease: ➖
     edit_incentive: Edit incentive
     update_incentive: Update incentive
+    current_value: Current value
+    aim: Aim
+    status:
+      pending: In progress
+      success: Success
+      failed: Failed
+    reward: Reward
+  analytics:
+    daily_statuses: Daily statuses
+    weekly_statuses: Weekly statuses
   activerecord:
     errors:
       models:

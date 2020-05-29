@@ -1,0 +1,8 @@
+.progress
+  %div{ class: "progress-bar #{progress_bar_class}",
+        role: 'progressbar',
+        'aria-valuenow' => values['success'].to_i,
+        'aria-valuemin' => 0,
+        'aria-valuemax' => values.values.sum,
+        style: "width: #{values['success'].to_f / values.values.sum * 100 }%" }
+    = "#{values['success']}/#{values.values.sum}"

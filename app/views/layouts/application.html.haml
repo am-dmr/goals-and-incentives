@@ -31,6 +31,9 @@
             %li{ class: controller.controller_name == 'incentives' ? 'nav-item active' : 'nav-item' }
               %a.nav-link{ href: web_v1_incentives_path }
                 = t('menu.incentives')
+            %li{ class: controller.controller_name == 'analytics' ? 'nav-item active' : 'nav-item' }
+              %a.nav-link{ href: web_v1_analytics_path }
+                = t('menu.analytics')
           %ul.navbar-nav.ml-md-auto
             %li.nav-item
               %a.nav-link{ href: destroy_web_v1_user_session_path, 'data-method' => 'delete' }

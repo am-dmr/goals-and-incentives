@@ -26,6 +26,7 @@ Rails.application.routes.draw do
           patch :freeze
         end
       end
+      resources :analytics, only: %i[index]
     end
   end
 end

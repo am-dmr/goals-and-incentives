@@ -1,0 +1,40 @@
+.row
+  .col.stats-section
+    %h3
+      = t('dashboard.stats')
+- @stats.each do |goal_id, dailies|
+  .row.stats-row
+    .col-lg-2.col-4.stats-goal-name
+      = link_to dailies[:name], web_v1_goal_path(goal_id)
+    - (0..9).to_a.reverse.each do |i|
+      - date = i.days.ago.to_date
+      - daily = dailies[date.strftime('%d%m')]
+      .stats-day{ class: "stats-#{daily.try(:[], :status) || 'pending'} stats-incentive-#{daily.try(:[], :incentive_status) || 'none'}",
+                  'data-toggle' => 'tooltip',
+                  'data-placement' => 'top',
+                  'title' => date.strftime('%d.%m') }
+
+.row
+  .col.analytics-section
+    %h3
+      = t('dashboard.analytics')
+.row
+  .col.analytics-row
+    %h4
+      = t('analytics.daily_statuses')
+
+    - values = @analytics[:daily]
+    = render partial: 'web/v1/analytics/row', locals: { values: values[:this_week], progress_bar_class: 'bg-success' }
+    = render partial: 'web/v1/analytics/row', locals: { values: values[:prev_week], progress_bar_class: 'bg-info' }
+    = render partial: 'web/v1/analytics/row', locals: { values: values[:prev_prev_week], progress_bar_class: 'bg-secondary' }
+%hr
+.row
+  .col.analytics-row
+    %h4
+      = t('analytics.weekly_statuses')
+
+    - values = @analytics[:weekly]
+    = render partial: 'web/v1/analytics/row', locals: { values: values[:this_week], progress_bar_class: 'bg-success' }
+    = render partial: 'web/v1/analytics/row', locals: { values: values[:prev_week], progress_bar_class: 'bg-info' }
+    = render partial: 'web/v1/analytics/row', locals: { values: values[:prev_prev_week], progress_bar_class: 'bg-secondary' }
+%hr

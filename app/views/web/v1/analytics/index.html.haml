@@ -27,6 +27,7 @@
     = render partial: 'web/v1/analytics/row', locals: { values: values[:this_week], progress_bar_class: 'bg-success' }
     = render partial: 'web/v1/analytics/row', locals: { values: values[:prev_week], progress_bar_class: 'bg-info' }
     = render partial: 'web/v1/analytics/row', locals: { values: values[:prev_prev_week], progress_bar_class: 'bg-secondary' }
+%hr
 .row
   .col.analytics-row
     %h4
@@ -36,3 +37,4 @@
     = render partial: 'web/v1/analytics/row', locals: { values: values[:this_week], progress_bar_class: 'bg-success' }
     = render partial: 'web/v1/analytics/row', locals: { values: values[:prev_week], progress_bar_class: 'bg-info' }
     = render partial: 'web/v1/analytics/row', locals: { values: values[:prev_prev_week], progress_bar_class: 'bg-secondary' }
+%hr

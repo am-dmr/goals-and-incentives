@@ -3,6 +3,7 @@ en:
     daily: Daily
     goals: Goals
     incentives: Rewards
+    analytics: Analytics
     login: Login
     logout: Logout
   dashboard:

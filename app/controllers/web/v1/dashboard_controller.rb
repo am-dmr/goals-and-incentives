@@ -2,8 +2,8 @@ module Web
   module V1
     class DashboardController < BaseController
       def index
-        update_last_visited_at
         PrepareUserDailies.call(current_web_v1_user)
+        update_last_visited_at
 
         repo = DailyRepository.new
 

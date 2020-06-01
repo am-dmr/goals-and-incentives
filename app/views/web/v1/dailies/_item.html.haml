@@ -23,6 +23,9 @@
       %span
         = link_to decrement_web_v1_daily_path(daily), method: :patch, remote: true do
           %i.fas.fa-minus-square
+      %span
+        = link_to edit_value_web_v1_daily_path(daily), method: :get, remote: true do
+          %i.fas.fa-edit
   .row
     .col-lg-1.col-2
     .col-lg-11.col-10

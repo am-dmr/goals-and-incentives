@@ -48,7 +48,7 @@ class GenerateDailies < BaseService
       .where(dailies: { id: nil })
       .find_each do |goal|
       last_daily = goal.dailies.last
-      if last_daily.status_success?
+      if !last_daily || last_daily.status_success?
         goal.dailies.create(date: Date.current, status: :pending, value: 0, incentive: goal.incentive)
       else
         last_daily.update(date: Date.current)

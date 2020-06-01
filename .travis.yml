@@ -30,3 +30,5 @@ deploy:
   app: goals-and-incentives
   on:
     repo: am-dmr/goals-and-incentives
+  run:
+    - "rake db:migrate"

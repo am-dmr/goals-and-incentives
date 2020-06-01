@@ -86,6 +86,97 @@ describe Web::V1::DailiesController do
     end
   end
 
+  describe '#edit_value' do
+    subject { get "/web/1.0/dailies/#{daily.id}/edit_value", xhr: true }
+
+    shared_examples 'do nothing' do |code|
+      it "returns #{code}" do
+        subject
+        expect(response).to have_http_status(code)
+      end
+    end
+
+    context 'without current user' do
+      it_behaves_like('do nothing', 401)
+    end
+
+    context 'with current user' do
+      before { sign_in(user) }
+
+      context "with another's goal" do
+        before { goal.update(user: create(:user)) }
+
+        it_behaves_like('do nothing', 404)
+      end
+
+      context 'with incorrect ID' do
+        subject { get "/web/1.0/dailies/#{daily.id + 1}/edit_value", xhr: true }
+
+        it_behaves_like('do nothing', 404)
+      end
+
+      context 'with correct params' do
+        it 'returns 200' do
+          subject
+          expect(response).to have_http_status(200)
+        end
+      end
+    end
+  end
+
+  describe '#update_value' do
+    subject { patch "/web/1.0/dailies/#{daily.id}/update_value", params: params, xhr: true }
+
+    let(:incentive) { create(:incentive, user: user) }
+    let(:params) { { daily: { value: 17 } } }
+
+    shared_examples 'do nothing' do |code|
+      it "returns #{code}" do
+        subject
+        expect(response).to have_http_status(code)
+      end
+      it 'does not update daily.value' do
+        expect { subject }.not_to(change { daily.reload.value })
+      end
+    end
+
+    context 'without current user' do
+      it_behaves_like('do nothing', 401)
+    end
+
+    context 'with current user' do
+      before { sign_in(user) }
+
+      context "with another's goal" do
+        before { goal.update(user: create(:user)) }
+
+        it_behaves_like('do nothing', 404)
+      end
+
+      context 'with empty params' do
+        let(:params) {}
+
+        it_behaves_like('do nothing', 400)
+      end
+
+      context 'with incorrect ID' do
+        subject { patch "/web/1.0/dailies/#{daily.id + 1}/update_value", params: params, xhr: true }
+
+        it_behaves_like('do nothing', 404)
+      end
+
+      context 'with correct params' do
+        it 'returns 200' do
+          subject
+          expect(response).to have_http_status(200)
+        end
+        it 'updates daily.value' do
+          expect { subject }.to change { daily.reload.value }.to(17)
+        end
+      end
+    end
+  end
+
   describe '#edit_incentive' do
     subject { get "/web/1.0/dailies/#{daily.id}/edit_incentive", xhr: true }
 

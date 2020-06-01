@@ -1,3 +1,4 @@
+- Automatic rescheduler for once goal
 - Daily & Weekly analytics improvement
 - Optimize UI (CRUD Goals & Incentives)
 - Language switcher & RU locale

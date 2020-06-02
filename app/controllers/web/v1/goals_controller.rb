@@ -83,7 +83,17 @@ module Web
       private
 
       def goal_params
-        pp = params.require(:goal).permit(:name, :aim, :limit, :period, :size, :incentive)
+        pp =
+          params
+          .require(:goal)
+          .permit(:name,
+                  :aim,
+                  :limit,
+                  :period,
+                  :size,
+                  :incentive,
+                  :auto_reactivate_every_n_days,
+                  :auto_reactivate_start_from)
         pp[:incentive_id] = pp[:incentive]
         pp.delete(:incentive)
         pp

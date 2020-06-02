@@ -74,6 +74,46 @@ describe Web::V1::GoalsController do
           subject
         end
       end
+
+      context 'with once' do
+        let(:params) do
+          {
+            goal: {
+              name: 'Name',
+              aim: 'equal',
+              limit: 1,
+              period: :once,
+              size: 'm',
+              incentive: incentive.id,
+              auto_reactivate_every_n_days: 3,
+              auto_reactivate_start_from: Date.current.strftime('%d.%m.%Y')
+            }
+          }
+        end
+
+        it 'creates Goal' do
+          expect { subject }.to change { Goal.count }.by(1)
+        end
+        it 'creates correct Goal' do
+          subject
+          expect(Goal.last).to have_attributes(
+            user_id: user.id,
+            name: 'Name',
+            limit: 1,
+            aim: 'equal',
+            period: 'once',
+            size: 'm',
+            incentive_id: incentive.id,
+            is_completed: false,
+            auto_reactivate_every_n_days: 3,
+            auto_reactivate_start_from: Date.current
+          )
+        end
+        it 'calls GenerateDaily' do
+          expect(GenerateDaily).to receive(:call)
+          subject
+        end
+      end
     end
   end
 
@@ -149,6 +189,46 @@ describe Web::V1::GoalsController do
         end
         it 'calls GenerateDaily' do
           expect(GenerateDaily).to receive(:call).with(goal)
+          subject
+        end
+      end
+
+      context 'with once' do
+        let(:params) do
+          {
+            goal: {
+              name: 'Name',
+              aim: 'equal',
+              limit: 1,
+              period: :once,
+              size: 'm',
+              incentive: incentive.id,
+              auto_reactivate_every_n_days: 3,
+              auto_reactivate_start_from: Date.current.strftime('%d.%m.%Y')
+            }
+          }
+        end
+
+        it 'creates Goal' do
+          expect { subject }.to change { Goal.count }.by(1)
+        end
+        it 'creates correct Goal' do
+          subject
+          expect(Goal.last).to have_attributes(
+            user_id: user.id,
+            name: 'Name',
+            limit: 1,
+            aim: 'equal',
+            period: 'once',
+            size: 'm',
+            incentive_id: incentive.id,
+            is_completed: false,
+            auto_reactivate_every_n_days: 3,
+            auto_reactivate_start_from: Date.current
+          )
+        end
+        it 'calls GenerateDaily' do
+          expect(GenerateDaily).to receive(:call)
           subject
         end
       end

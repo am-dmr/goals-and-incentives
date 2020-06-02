@@ -12,6 +12,10 @@ describe PrepareUserDailies do
       expect(GenerateDailies).not_to receive(:call)
       subject
     end
+    it 'does not call AutoReactivateGoals' do
+      expect(AutoReactivateGoals).not_to receive(:call)
+      subject
+    end
     it 'does not call FreezeDailies' do
       expect(FreezeDailies).not_to receive(:call)
       subject
@@ -39,6 +43,10 @@ describe PrepareUserDailies do
     end
     it 'calls GenerateDailies' do
       expect(GenerateDailies).to receive(:call)
+      subject
+    end
+    it 'calls AutoReactivateGoals' do
+      expect(AutoReactivateGoals).to receive(:call)
       subject
     end
     it 'calls FreezeDailies' do

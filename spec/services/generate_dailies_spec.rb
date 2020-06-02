@@ -6,24 +6,17 @@ describe GenerateDailies do
   let(:user) { create(:user) }
   let(:incentive) { create(:incentive, user: user) }
 
-  shared_examples 'create new daily' do
-    it 'creates new daily' do
-      expect { subject }.to change { Daily.count }.by(1)
-    end
-    it 'creates correct daily' do
+  shared_examples 'do call' do
+    it 'calls GenerateDaily' do
+      expect(GenerateDaily).to receive(:call).with(goal)
       subject
-      expect(Daily.last).to have_attributes(
-        goal_id: goal.id,
-        status: 'pending',
-        value: 0,
-        incentive_id: incentive.id
-      )
     end
   end
 
   shared_examples 'do nothing' do
-    it 'does not create new daily' do
-      expect { subject }.not_to(change { Daily.count })
+    it 'does not call GenerateDaily' do
+      expect(GenerateDaily).not_to receive(:call)
+      subject
     end
   end
 
@@ -32,7 +25,7 @@ describe GenerateDailies do
 
     before { create(:daily, goal: goal, date: Date.yesterday) }
 
-    it_behaves_like('create new daily')
+    it_behaves_like('do call')
 
     context 'with today daily' do
       before { create(:daily, goal: goal, date: Date.current) }
@@ -52,7 +45,7 @@ describe GenerateDailies do
 
     before { create(:daily, goal: goal, date: 14.days.ago.to_date) }
 
-    it_behaves_like('create new daily')
+    it_behaves_like('do call')
 
     context 'with existed week daily' do
       before { create(:daily, goal: goal, date: Date.current.beginning_of_day) }
@@ -71,44 +64,25 @@ describe GenerateDailies do
     context 'with incompleted goal' do
       let!(:goal) { create(:goal, user: user, period: :once, is_completed: false, incentive: incentive) }
 
-      context 'with success daily' do
-        before { create(:daily, goal: goal, status: :success, date: Date.yesterday) }
+      it_behaves_like('do call')
 
-        it_behaves_like('create new daily')
-      end
-
-      context 'with pending daily' do
-        let!(:daily) { create(:daily, goal: goal, status: :pending, date: Date.yesterday) }
+      context 'with today daily' do
+        before { create(:daily, goal: goal, date: Date.current) }
 
         it_behaves_like('do nothing')
+      end
 
-        it 'moves old daily to today' do
-          expect { subject }.to change { daily.reload.date }.to(Date.current)
-        end
-        it 'does not update old daily status' do
-          expect { subject }.not_to(change { daily.reload.status })
-        end
+      context 'with incorrect user' do
+        before { goal.update(user: create(:user)) }
+
+        it_behaves_like('do nothing')
       end
     end
 
     context 'with completed goal' do
-      let!(:goal) { create(:goal, user: user, period: :once, is_completed: true, incentive: incentive) }
+      before { create(:goal, user: user, period: :once, is_completed: true, incentive: incentive) }
 
-      context 'with success daily' do
-        before { create(:daily, goal: goal, status: :success, date: Date.yesterday) }
-
-        it_behaves_like('do nothing')
-      end
-
-      context 'with pending daily' do
-        let!(:daily) { create(:daily, goal: goal, status: :pending, date: Date.yesterday) }
-
-        it_behaves_like('do nothing')
-
-        it 'does not change old daily' do
-          expect { subject }.not_to(change { daily.reload })
-        end
-      end
+      it_behaves_like('do nothing')
     end
   end
 end

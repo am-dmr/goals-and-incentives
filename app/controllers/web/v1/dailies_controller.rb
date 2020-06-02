@@ -19,9 +19,7 @@ module Web
 
       def update_value
         @daily = current_web_v1_user.dailies.find(params[:id])
-        @daily.update(value: params.require(:daily)[:value].to_i)
-
-        RecalcDailyStatus.call(@daily, current_daily: @daily.date == Date.current)
+        UpdateDaily.call(@daily, :set_value, value: params.require(:daily)[:value].to_i)
       end
 
       def edit_incentive

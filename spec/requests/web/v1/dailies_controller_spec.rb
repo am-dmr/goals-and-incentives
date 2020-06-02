@@ -170,8 +170,9 @@ describe Web::V1::DailiesController do
           subject
           expect(response).to have_http_status(200)
         end
-        it 'updates daily.value' do
-          expect { subject }.to change { daily.reload.value }.to(17)
+        it 'calls UpdateDaily' do
+          expect(UpdateDaily).to receive(:call).with(daily, :set_value, value: 17)
+          subject
         end
       end
     end

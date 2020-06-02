@@ -29,7 +29,7 @@ module Web
         @goal = current_web_v1_user.goals.create(goal_params)
 
         if @goal.persisted?
-          GenerateDailies.call(current_web_v1_user)
+          GenerateDaily.call(@goal)
           flash[:notice] = t('goals.create_ok')
           redirect_to web_v1_goal_path(@goal)
         else
@@ -46,7 +46,7 @@ module Web
         @goal = current_web_v1_user.goals.find(params[:id])
 
         if @goal.update(goal_params)
-          GenerateDailies.call(current_web_v1_user)
+          GenerateDaily.call(@goal)
           flash[:notice] = t('goals.update_ok')
           redirect_to web_v1_goal_path(@goal)
         else
@@ -59,7 +59,7 @@ module Web
         @goal = current_web_v1_user.goals.period_once.find(params[:id])
 
         if @goal.update(is_completed: false)
-          GenerateDailies.call(current_web_v1_user)
+          GenerateDaily.call(@goal)
           flash[:notice] = t('goals.update_ok')
           redirect_to web_v1_goal_path(@goal)
         else

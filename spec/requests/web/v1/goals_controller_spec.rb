@@ -19,8 +19,8 @@ describe Web::V1::GoalsController do
       it 'does not create Goal' do
         expect { subject }.not_to(change { Goal.count })
       end
-      it 'does not call GenerateDailies' do
-        expect(GenerateDailies).not_to receive(:call)
+      it 'does not call GenerateDaily' do
+        expect(GenerateDaily).not_to receive(:call)
         subject
       end
     end
@@ -46,8 +46,8 @@ describe Web::V1::GoalsController do
         it 'does not create Goal' do
           expect { subject }.not_to(change { Goal.count })
         end
-        it 'does not call GenerateDailies' do
-          expect(GenerateDailies).not_to receive(:call)
+        it 'does not call GenerateDaily' do
+          expect(GenerateDaily).not_to receive(:call)
           subject
         end
       end
@@ -69,8 +69,8 @@ describe Web::V1::GoalsController do
             is_completed: false
           )
         end
-        it 'calls GenerateDailies' do
-          expect(GenerateDailies).to receive(:call).with(user)
+        it 'calls GenerateDaily' do
+          expect(GenerateDaily).to receive(:call)
           subject
         end
       end
@@ -94,8 +94,8 @@ describe Web::V1::GoalsController do
       it 'does not update Goal' do
         expect { subject }.not_to(change { goal.reload })
       end
-      it 'does not call GenerateDailies' do
-        expect(GenerateDailies).not_to receive(:call)
+      it 'does not call GenerateDaily' do
+        expect(GenerateDaily).not_to receive(:call)
         subject
       end
     end
@@ -127,8 +127,8 @@ describe Web::V1::GoalsController do
         it 'does not update Goal' do
           expect { subject }.not_to(change { goal.reload })
         end
-        it 'does not call GenerateDailies' do
-          expect(GenerateDailies).not_to receive(:call)
+        it 'does not call GenerateDaily' do
+          expect(GenerateDaily).not_to receive(:call)
           subject
         end
       end
@@ -147,8 +147,8 @@ describe Web::V1::GoalsController do
             is_completed: false
           )
         end
-        it 'calls GenerateDailies' do
-          expect(GenerateDailies).to receive(:call).with(user)
+        it 'calls GenerateDaily' do
+          expect(GenerateDaily).to receive(:call).with(goal)
           subject
         end
       end
@@ -168,8 +168,8 @@ describe Web::V1::GoalsController do
       it 'does not update Goal is completed' do
         expect { subject }.not_to(change { goal.reload.is_completed })
       end
-      it 'does not call GenerateDailies' do
-        expect(GenerateDailies).not_to receive(:call)
+      it 'does not call GenerateDaily' do
+        expect(GenerateDaily).not_to receive(:call)
         subject
       end
     end
@@ -199,8 +199,8 @@ describe Web::V1::GoalsController do
         it 'updates Goal is completed' do
           expect { subject }.to change { goal.reload.is_completed }.to(false)
         end
-        it 'calls GenerateDailies' do
-          expect(GenerateDailies).to receive(:call).with(user)
+        it 'calls GenerateDaily' do
+          expect(GenerateDaily).to receive(:call).with(goal)
           subject
         end
       end

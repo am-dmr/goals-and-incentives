@@ -51,6 +51,18 @@
         = @goal.display_size
   .row
     .col-lg-2.col-4
+      = Goal.human_attribute_name(:auto_reactivate_every_n_days)
+    .col-lg-10.col-8
+      %strong
+        = @goal.auto_reactivate_every_n_days
+  .row
+    .col-lg-2.col-4
+      = Goal.human_attribute_name(:auto_reactivate_start_from)
+    .col-lg-10.col-8
+      %strong
+        = @goal.auto_reactivate_start_from
+  .row
+    .col-lg-2.col-4
       = Goal.human_attribute_name(:incentive)
     .col-lg-10.col-8
       %strong

@@ -21,6 +21,10 @@
             %th{ scope: 'col' }
               = Goal.human_attribute_name(:size)
             %th{ scope: 'col' }
+              = Goal.human_attribute_name(:auto_reactivate_every_n_days)
+            %th{ scope: 'col' }
+              = Goal.human_attribute_name(:auto_reactivate_start_from)
+            %th{ scope: 'col' }
               = Goal.human_attribute_name(:incentive)
             %th{ scope: 'col' }
             %th{ scope: 'col' }
@@ -38,6 +42,10 @@
                 = goal.display_period
               %td
                 = goal.display_size
+              %td
+                = goal.auto_reactivate_every_n_days
+              %td
+                = goal.auto_reactivate_start_from
               %td
                 - if goal.incentive.present?
                   = link_to goal.incentive.name, web_v1_incentive_path(goal.incentive)

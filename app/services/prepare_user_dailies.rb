@@ -7,6 +7,7 @@ class PrepareUserDailies < BaseService
 
     DropOldDailies.call(user)
     GenerateDailies.call(user)
+    AutoReactivateGoals.call(user)
     FreezeDailies.call(user)
   end
 end

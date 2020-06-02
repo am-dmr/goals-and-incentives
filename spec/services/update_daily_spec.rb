@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 describe UpdateDaily do
-  subject { described_class.call(daily, action) }
+  subject { described_class.call(daily, action, value: value) }
 
   let(:daily) { create(:daily, value: 3) }
+  let(:value) { 10 }
 
   context 'with action == increment' do
     let(:action) { :increment }
@@ -22,6 +23,18 @@ describe UpdateDaily do
 
     it 'decrements value' do
       expect { subject }.to change { daily.reload.value }.to(2)
+    end
+    it 'calls RecalcDailyStatus' do
+      expect(RecalcDailyStatus).to receive(:call).with(daily, current_daily: true)
+      subject
+    end
+  end
+
+  context 'with action == set_value' do
+    let(:action) { :set_value }
+
+    it 'sets new value' do
+      expect { subject }.to change { daily.reload.value }.to(10)
     end
     it 'calls RecalcDailyStatus' do
       expect(RecalcDailyStatus).to receive(:call).with(daily, current_daily: true)

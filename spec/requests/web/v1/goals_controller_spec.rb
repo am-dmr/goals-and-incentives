@@ -19,8 +19,8 @@ describe Web::V1::GoalsController do
       it 'does not create Goal' do
         expect { subject }.not_to(change { Goal.count })
       end
-      it 'does not call GenerateDailies' do
-        expect(GenerateDailies).not_to receive(:call)
+      it 'does not call GenerateDaily' do
+        expect(GenerateDaily).not_to receive(:call)
         subject
       end
     end
@@ -46,8 +46,8 @@ describe Web::V1::GoalsController do
         it 'does not create Goal' do
           expect { subject }.not_to(change { Goal.count })
         end
-        it 'does not call GenerateDailies' do
-          expect(GenerateDailies).not_to receive(:call)
+        it 'does not call GenerateDaily' do
+          expect(GenerateDaily).not_to receive(:call)
           subject
         end
       end
@@ -69,8 +69,48 @@ describe Web::V1::GoalsController do
             is_completed: false
           )
         end
-        it 'calls GenerateDailies' do
-          expect(GenerateDailies).to receive(:call).with(user)
+        it 'calls GenerateDaily' do
+          expect(GenerateDaily).to receive(:call)
+          subject
+        end
+      end
+
+      context 'with once' do
+        let(:params) do
+          {
+            goal: {
+              name: 'Name',
+              aim: 'equal',
+              limit: 1,
+              period: :once,
+              size: 'm',
+              incentive: incentive.id,
+              auto_reactivate_every_n_days: 3,
+              auto_reactivate_start_from: Date.current.strftime('%d.%m.%Y')
+            }
+          }
+        end
+
+        it 'creates Goal' do
+          expect { subject }.to change { Goal.count }.by(1)
+        end
+        it 'creates correct Goal' do
+          subject
+          expect(Goal.last).to have_attributes(
+            user_id: user.id,
+            name: 'Name',
+            limit: 1,
+            aim: 'equal',
+            period: 'once',
+            size: 'm',
+            incentive_id: incentive.id,
+            is_completed: false,
+            auto_reactivate_every_n_days: 3,
+            auto_reactivate_start_from: Date.current
+          )
+        end
+        it 'calls GenerateDaily' do
+          expect(GenerateDaily).to receive(:call)
           subject
         end
       end
@@ -94,8 +134,8 @@ describe Web::V1::GoalsController do
       it 'does not update Goal' do
         expect { subject }.not_to(change { goal.reload })
       end
-      it 'does not call GenerateDailies' do
-        expect(GenerateDailies).not_to receive(:call)
+      it 'does not call GenerateDaily' do
+        expect(GenerateDaily).not_to receive(:call)
         subject
       end
     end
@@ -127,8 +167,8 @@ describe Web::V1::GoalsController do
         it 'does not update Goal' do
           expect { subject }.not_to(change { goal.reload })
         end
-        it 'does not call GenerateDailies' do
-          expect(GenerateDailies).not_to receive(:call)
+        it 'does not call GenerateDaily' do
+          expect(GenerateDaily).not_to receive(:call)
           subject
         end
       end
@@ -147,8 +187,48 @@ describe Web::V1::GoalsController do
             is_completed: false
           )
         end
-        it 'calls GenerateDailies' do
-          expect(GenerateDailies).to receive(:call).with(user)
+        it 'calls GenerateDaily' do
+          expect(GenerateDaily).to receive(:call).with(goal)
+          subject
+        end
+      end
+
+      context 'with once' do
+        let(:params) do
+          {
+            goal: {
+              name: 'Name',
+              aim: 'equal',
+              limit: 1,
+              period: :once,
+              size: 'm',
+              incentive: incentive.id,
+              auto_reactivate_every_n_days: 3,
+              auto_reactivate_start_from: Date.current.strftime('%d.%m.%Y')
+            }
+          }
+        end
+
+        it 'creates Goal' do
+          expect { subject }.to change { Goal.count }.by(1)
+        end
+        it 'creates correct Goal' do
+          subject
+          expect(Goal.last).to have_attributes(
+            user_id: user.id,
+            name: 'Name',
+            limit: 1,
+            aim: 'equal',
+            period: 'once',
+            size: 'm',
+            incentive_id: incentive.id,
+            is_completed: false,
+            auto_reactivate_every_n_days: 3,
+            auto_reactivate_start_from: Date.current
+          )
+        end
+        it 'calls GenerateDaily' do
+          expect(GenerateDaily).to receive(:call)
           subject
         end
       end
@@ -168,8 +248,8 @@ describe Web::V1::GoalsController do
       it 'does not update Goal is completed' do
         expect { subject }.not_to(change { goal.reload.is_completed })
       end
-      it 'does not call GenerateDailies' do
-        expect(GenerateDailies).not_to receive(:call)
+      it 'does not call GenerateDaily' do
+        expect(GenerateDaily).not_to receive(:call)
         subject
       end
     end
@@ -199,8 +279,8 @@ describe Web::V1::GoalsController do
         it 'updates Goal is completed' do
           expect { subject }.to change { goal.reload.is_completed }.to(false)
         end
-        it 'calls GenerateDailies' do
-          expect(GenerateDailies).to receive(:call).with(user)
+        it 'calls GenerateDaily' do
+          expect(GenerateDaily).to receive(:call).with(goal)
           subject
         end
       end

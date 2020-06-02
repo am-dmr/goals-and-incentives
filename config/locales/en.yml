@@ -64,6 +64,8 @@ en:
               for_once_only_one: should be equal "1" for this period
             aim:
               for_once_only_equal: should be "equal" for this period
+            auto_reactivate_every_n_days:
+              for_once_only: is available only for "once"
     attributes:
       goal:
         name: Name
@@ -85,6 +87,8 @@ en:
         size/xxl: XXL
         size/xxxl: XXXL
         incentive: Reward
+        auto_reactivate_every_n_days: Auto-reactivate every N days
+        auto_reactivate_start_from: Auto-reactivate starts from
       incentive:
         name: Name
         size: Size

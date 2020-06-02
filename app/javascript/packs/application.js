@@ -25,5 +25,5 @@ $(document).ready(function() {
     function() { $('.alert.should-be-hidden').hide(500); }, 2000
   );
 
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip();
 });

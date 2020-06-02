@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_082607) do
+ActiveRecord::Schema.define(version: 2020_06_02_125149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 2020_05_29_082607) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_completed", default: false, null: false
     t.bigint "incentive_id"
+    t.integer "auto_reactivate_every_n_days"
+    t.date "auto_reactivate_start_from"
     t.index ["incentive_id"], name: "index_goals_on_incentive_id"
     t.index ["user_id"], name: "index_goals_on_user_id"
   end

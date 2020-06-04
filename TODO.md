@@ -1,4 +1,3 @@
-- Sort is_completed last
 - Allow to delete Goal/Incentive
 - JS validation/switcher in Goal/Incentive new/edit
 - Daily & Weekly analytics improvement

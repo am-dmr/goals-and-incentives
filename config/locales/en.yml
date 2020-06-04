@@ -60,10 +60,6 @@ en:
       models:
         goal:
           attributes:
-            limit:
-              for_once_only_one: should be equal "1" for this period
-            aim:
-              for_once_only_equal: should be "equal" for this period
             auto_reactivate_every_n_days:
               for_once_only: is available only for "once"
     attributes:

@@ -1,4 +1,3 @@
-- Allow to delete Goal/Incentive
 - JS validation/switcher in Goal/Incentive new/edit
 - Daily & Weekly analytics improvement
 - Optimize UI (CRUD Goals & Incentives)

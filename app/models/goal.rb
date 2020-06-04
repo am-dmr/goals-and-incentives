@@ -14,7 +14,7 @@ class Goal < ApplicationRecord
   belongs_to :user
   belongs_to :incentive, optional: true
 
-  has_many :dailies, dependent: :restrict_with_error
+  has_many :dailies, dependent: :destroy
 
   include WithSize
   include WithEnum

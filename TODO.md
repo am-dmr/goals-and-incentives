@@ -2,6 +2,5 @@
 - Daily & Weekly analytics improvement
 - Optimize UI (CRUD Goals & Incentives)
 - Language switcher & RU locale
-- Allow once >=< 0..infinity ?
 - README
 - API v2 + Vue.js

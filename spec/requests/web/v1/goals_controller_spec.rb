@@ -40,7 +40,7 @@ describe Web::V1::GoalsController do
 
       context 'with error' do
         let(:params) do
-          { goal: { name: 'Name', aim: 'equal', limit: 3, period: :once, size: 'm' } }
+          { goal: { aim: 'equal', limit: 3, period: :once, size: 'm' } }
         end
 
         it 'does not create Goal' do
@@ -161,7 +161,7 @@ describe Web::V1::GoalsController do
 
       context 'with error' do
         let(:params) do
-          { goal: { name: 'Name', aim: 'equal', limit: 3, period: :once, size: 'm' } }
+          { goal: { name: 'Name', aim: 'equal', limit: 3, period: :once, size: 'm', auto_reactivate_every_n_days: -1 } }
         end
 
         it 'does not update Goal' do

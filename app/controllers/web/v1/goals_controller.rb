@@ -11,6 +11,7 @@ module Web
             Arel.sql(<<~SQL)
               goals.period = #{Goal.periods[:per_day]} DESC,
               goals.period = #{Goal.periods[:per_week]} DESC,
+              goals.is_completed = TRUE ASC,
               goals.size DESC,
               goals.name ASC
             SQL

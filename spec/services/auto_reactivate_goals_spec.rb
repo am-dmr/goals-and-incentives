@@ -60,7 +60,7 @@ describe AutoReactivateGoals do
              period: :once,
              is_completed: true,
              auto_reactivate_every_n_days: 2,
-             auto_reactivate_start_from: 9.days.ago)
+             auto_reactivate_start_from: 9.days.ago.to_date)
     end
 
     context 'without dailies' do
@@ -95,6 +95,23 @@ describe AutoReactivateGoals do
       before { goal.update(user: create(:user)) }
 
       it_behaves_like('do nothing')
+    end
+  end
+
+  context 'with once + per week' do
+    let!(:goal) do
+      create(:goal,
+             user: user,
+             period: :once,
+             is_completed: true,
+             auto_reactivate_every_n_days: 7,
+             auto_reactivate_start_from: 7.days.ago.to_date)
+    end
+
+    context 'with old daily' do
+      before { create(:daily, goal: goal, date: 6.days.ago.to_date) }
+
+      it_behaves_like('do reactivation')
     end
   end
 end

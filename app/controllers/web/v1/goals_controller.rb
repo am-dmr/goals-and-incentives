@@ -32,7 +32,7 @@ module Web
         if @goal.persisted?
           GenerateDaily.call(@goal)
           flash[:notice] = t('goals.create_ok')
-          redirect_to web_v1_goal_path(@goal)
+          redirect_to web_v1_goals_path
         else
           flash[:alert] = t('goals.create_error')
           render :new
@@ -49,7 +49,7 @@ module Web
         if @goal.update(goal_params)
           GenerateDaily.call(@goal)
           flash[:notice] = t('goals.update_ok')
-          redirect_to web_v1_goal_path(@goal)
+          redirect_to web_v1_goals_path
         else
           flash[:alert] = t('goals.update_error')
           render :edit
@@ -62,7 +62,7 @@ module Web
         if @goal.update(is_completed: false)
           GenerateDaily.call(@goal)
           flash[:notice] = t('goals.update_ok')
-          redirect_to web_v1_goal_path(@goal)
+          redirect_to web_v1_goals_path
         else
           flash[:alert] = t('goals.update_error')
           render :edit
@@ -74,11 +74,10 @@ module Web
 
         if @goal.destroy
           flash[:notice] = t('goals.delete_ok')
-          redirect_to web_v1_goals_path
         else
           flash[:alert] = t('goals.delete_error')
-          redirect_to web_v1_goal_path(@goal)
         end
+        redirect_to web_v1_goals_path
       end
 
       private

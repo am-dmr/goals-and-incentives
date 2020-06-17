@@ -22,7 +22,7 @@ class AutoReactivateGoals < BaseService
 
   def reactivate_goal(goal)
     reactivation_date = goal.auto_reactivate_start_from
-    reactivation_date += goal.auto_reactivate_every_n_days.days while reactivation_date < Date.current
+    reactivation_date += goal.auto_reactivate_every_n_days.days while reactivation_date <= Date.current
     reactivation_date -= goal.auto_reactivate_every_n_days.days
 
     last_daily = goal.dailies.last

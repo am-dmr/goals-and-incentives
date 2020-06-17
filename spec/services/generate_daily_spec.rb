@@ -32,12 +32,24 @@ describe GenerateDaily do
     let(:goal) { create(:goal, user: user, period: :per_day, incentive: incentive) }
 
     it_behaves_like('create new daily', Date.current)
+
+    context 'with today daily' do
+      before { create(:daily, date: Date.current, goal: goal) }
+
+      it_behaves_like('do nothing')
+    end
   end
 
   context 'with per week goal' do
     let(:goal) { create(:goal, user: user, period: :per_week, incentive: incentive) }
 
     it_behaves_like('create new daily', Date.current.beginning_of_week)
+
+    context 'with weekly daily' do
+      before { create(:daily, date: Date.current.beginning_of_week, goal: goal) }
+
+      it_behaves_like('do nothing')
+    end
   end
 
   context 'with once goal' do

@@ -3,4 +3,3 @@
 - Optimize UI (CRUD Goals & Incentives)
 - Language switcher & RU locale
 - README
-- API v2 + Vue.js
